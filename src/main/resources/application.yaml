@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: api
+  jpa:
+    hibernate:
+      ddl-auto: none
+  sql:
+    init:
+      mode: always
+      schema-locations:
+        - classpath:schemas/security.sql
+        - classpath:schemas/common.sql
+        - classpath:schemas/skills.sql
+      data-locations:
+        - classpath:data/security.sql
+        - classpath:data/common.sql
+        - classpath:data/skills.sql
+server:
+  port: 8900
