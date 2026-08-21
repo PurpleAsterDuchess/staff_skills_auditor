@@ -10,7 +10,18 @@ public class StaffJpaToDTOMapper {
         Objects.requireNonNull(staff, "Staff JPA entity cannot be null");
 
         return new StaffDTO(
-
+                staff.getId(),
+                staff.getFirst_name(),
+                staff.getSurname(),
+                staff.getEmail(),
+                staff.getHire_date(),
+                staff.getDepartment(),
+                staff.getLine_manager_id(),
+                staff.getCurrent_role(),
+                staff.getRole_start_date(),
+                staff.getJob_level(),
+                staff.getEmployment_type(),
+                staff.getEmployment_status()
         );
     }
 }

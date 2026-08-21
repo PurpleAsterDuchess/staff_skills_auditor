@@ -4,10 +4,7 @@ import lombok.AllArgsConstructor;
 import org.example.staffskillsauditor2.skills.ContextFacade;
 import org.example.staffskillsauditor2.skills.application.dto.StaffDTO;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RequestMapping("/staff")
 @RestController
@@ -15,7 +12,10 @@ import org.springframework.web.bind.annotation.RestController;
 public class StaffController {
     private final ContextFacade facade;
 
-    @GetMapping
+    @GetMapping("/{staff_id}")
     @ResponseStatus(HttpStatus.OK)
-    public Iterable<StaffDTO> getAllStaffMembers() { return facade.findAllStaffMembers();}
+    public StaffDTO getStaffById(
+            @PathVariable String staff_id){
+        return facade.findStaffById(staff_id);
+    }
 }

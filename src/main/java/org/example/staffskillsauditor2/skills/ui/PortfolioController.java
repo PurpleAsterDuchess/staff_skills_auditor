@@ -14,7 +14,8 @@ public class PortfolioController {
 
     @GetMapping("/{portfolio_id}")
     @ResponseStatus(HttpStatus.OK)
-    public PortfolioDTO getPortfolioId(@PathVariable String portfolio_id){
+    public PortfolioDTO getPortfolioById(
+            @PathVariable String portfolio_id){
         return facade.findPortfolioById(portfolio_id);
     }
 }
