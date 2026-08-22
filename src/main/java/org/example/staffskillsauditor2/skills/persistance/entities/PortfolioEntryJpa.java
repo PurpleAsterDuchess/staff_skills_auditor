@@ -8,7 +8,7 @@ import lombok.ToString;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-@Entity(name = "portfolioEntry")
+@Entity(name = "portfolio_entry")
 @Table(name = "portfolio_entry")
 @Getter
 @Setter
@@ -46,4 +46,5 @@ public class PortfolioEntryJpa {
 
     @Column(name = "verified_on")
     private LocalDateTime verifiedOn;
+
 }

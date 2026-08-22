@@ -9,7 +9,7 @@ import org.example.staffskillsauditor2.skills.application.dto.PortfolioEntryDTO;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity(name = "portfolio")
+@Entity(name = "skill_portfolio")
 @Table(name = "skill_portfolio")
 @Getter
 @Setter
@@ -23,6 +23,6 @@ public class PortfolioJpa {
     @Column(name = "staff_id", nullable = false, unique = true)
     private String staffId;
 
-    @OneToMany(mappedBy = "portfolio_entry", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "portfolio", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<PortfolioEntryJpa> portfolioEntry = new ArrayList<>();
 }

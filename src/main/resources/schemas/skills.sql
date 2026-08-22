@@ -6,7 +6,7 @@ CREATE TABLE skill_aggregate (
                                  is_active BOOLEAN NOT NULL DEFAULT TRUE
 );
 
-CREATE TABLE portfolio (
+CREATE TABLE skill_portfolio (
                                  id VARCHAR PRIMARY KEY,
                                  staff_id VARCHAR NOT NULL UNIQUE, -- portfolio -||-------||- Staff Member
                                  FOREIGN KEY (staff_id) REFERENCES staff_member(id) ON DELETE CASCADE
@@ -25,7 +25,7 @@ CREATE TABLE portfolio_entry (
                                  verified_by VARCHAR,
                                  verified_on TIMESTAMP,
 
-                                 FOREIGN KEY (portfolio_id) REFERENCES portfolio(id) ON DELETE CASCADE,
+                                 FOREIGN KEY (portfolio_id) REFERENCES skill_portfolio(id) ON DELETE CASCADE,
                                  FOREIGN KEY (skill_id) REFERENCES skill_aggregate(id) ON DELETE RESTRICT,
                                  FOREIGN KEY (verified_by) REFERENCES staff_member(id) ON DELETE SET NULL,
 
