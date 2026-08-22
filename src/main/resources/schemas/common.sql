@@ -24,7 +24,7 @@ CREATE TABLE staff_member (
                               department VARCHAR(50) NOT NULL,
                               line_manager_id VARCHAR,
 
-                              current_role VARCHAR(100) NOT NULL,
+                              role_name VARCHAR(100) NOT NULL,
                               role_start_date DATE NOT NULL,
                               job_level VARCHAR(30) NOT NULL,
                               employment_type VARCHAR(30) NOT NULL,

@@ -8,6 +8,8 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.time.LocalDate;
+
 @Entity(name = "staff")
 @Table(name = "staff_member")
 @Getter
@@ -19,8 +21,8 @@ public class StaffJpa {
     @Column(name="id")
     private String id;
 
-    @Column(name = "first_name", nullable = false, unique = true, length = 100)
-    private String first_name;
+    @Column(name = "first_name", nullable = false, unique = false, length = 100)
+    private String firstName;
 
     @Column(name = "surname", nullable = false, length = 500)
     private String surname;
@@ -28,28 +30,28 @@ public class StaffJpa {
     @Column(name = "email", nullable = false, length = 50)
     private String email;
 
-    @Column(name = "hire_date", nullable = false, unique = true, length = 100)
-    private String hire_date;
+    @Column(name = "hire_date", nullable = false, unique = false, length = 100)
+    private LocalDate hireDate;
 
     @Column(name = "department", nullable = false, length = 500)
     private String department;
 
-    @Column(name = "line_manager_id", nullable = false, length = 50)
-    private String line_manager_id;
+    @Column(name = "line_manager_id", nullable = true, length = 50)
+    private String lineManagerId;
 
-    @Column(name = "current_role", nullable = false, unique = true, length = 100)
-    private String current_role;
+    @Column(name = "role_name", nullable = false, unique = false, length = 100)
+    private String roleName;
 
     @Column(name = "role_start_date", nullable = false, length = 500)
-    private String role_start_date;
+    private LocalDate roleStartDate;
 
     @Column(name = "job_level", nullable = false, length = 50)
-    private String job_level;
+    private String jobLevel;
 
-    @Column(name = "employment_type", nullable = false, unique = true, length = 100)
-    private String employment_type;
+    @Column(name = "employment_type", nullable = false, unique = false, length = 100)
+    private String employmentType;
 
     @Column(name = "employment_status", nullable = false, length = 500)
-    private String employment_status;
+    private String employmentStatus;
 
 }

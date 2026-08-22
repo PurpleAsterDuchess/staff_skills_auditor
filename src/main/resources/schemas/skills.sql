@@ -17,18 +17,16 @@ CREATE TABLE portfolio_entry (
                                  portfolio_id VARCHAR NOT NULL, -- FK Aggregate Root
                                  skill_id VARCHAR NOT NULL,     -- FK Skill Aggregate
 
-    -- Value Object Fields (Embedded in the database row)
                                  skill_level INT NOT NULL,
                                  expiration_date DATE,
                                  notes VARCHAR(1000),
 
-    -- State and Verification Workflow (Policed by Invariant Rules)
                                  verification_status VARCHAR(20) NOT NULL DEFAULT 'PENDING',
                                  verified_by VARCHAR,
                                  verified_on TIMESTAMP,
 
                                  FOREIGN KEY (portfolio_id) REFERENCES portfolio(id) ON DELETE CASCADE,
-                                 FOREIGN KEY (skill_id) REFERENCES skill(id) ON DELETE RESTRICT,
+                                 FOREIGN KEY (skill_id) REFERENCES skill_aggregate(id) ON DELETE RESTRICT,
                                  FOREIGN KEY (verified_by) REFERENCES staff_member(id) ON DELETE SET NULL,
 
     -- prevent duplicate allocations of the same skill
@@ -40,12 +38,11 @@ CREATE TABLE portfolio_entry (
 -- ----------------------------------------------------------------------------
 
 CREATE INDEX idx_portfolio_entry_pending
-    ON portfolio_entry (verification_status)
-    WHERE verification_status = 'PENDING';
-
+    ON portfolio_entry (verification_status);
 CREATE INDEX idx_portfolio_entry_expired
-    ON portfolio_entry (expiration_date)
-    WHERE expiration_date IS NOT NULL;
+    ON portfolio_entry (expiration_date);
 
 CREATE INDEX idx_portfolio_entry_search
     ON portfolio_entry (portfolio_id, skill_id, skill_level);
+
+

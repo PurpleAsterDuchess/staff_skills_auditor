@@ -1,17 +1,18 @@
 package org.example.staffskillsauditor2.skills.application.dto;
+import java.time.LocalDate;
 
 public record StaffDTO(
     String id,
-    String first_name,
+    String firstName,
     String surname,
     String email,
-    String hire_date,
+    LocalDate hireDate,
     String department,
-    String line_manager_id,
-    String current_role,
-    String role_start_date,
-    String job_level,
-    String employment_type,
-    String employment_status
+    String lineManagerId,
+    String roleName,
+    LocalDate roleStartDate,
+    String jobLevel,
+    String employmentType,
+    String employmentStatus
     ) {
 }

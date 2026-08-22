@@ -11,17 +11,17 @@ public class StaffJpaToDTOMapper {
 
         return new StaffDTO(
                 staff.getId(),
-                staff.getFirst_name(),
+                staff.getFirstName(),
                 staff.getSurname(),
                 staff.getEmail(),
-                staff.getHire_date(),
+                staff.getHireDate(),
                 staff.getDepartment(),
-                staff.getLine_manager_id(),
-                staff.getCurrent_role(),
-                staff.getRole_start_date(),
-                staff.getJob_level(),
-                staff.getEmployment_type(),
-                staff.getEmployment_status()
+                staff.getLineManagerId(),
+                staff.getRoleName(),
+                staff.getRoleStartDate(),
+                staff.getJobLevel(),
+                staff.getEmploymentType(),
+                staff.getEmploymentStatus()
         );
     }
 }

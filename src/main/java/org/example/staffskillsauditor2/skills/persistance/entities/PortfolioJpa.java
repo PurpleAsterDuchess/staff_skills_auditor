@@ -23,6 +23,6 @@ public class PortfolioJpa {
     @Column(name = "staff_id", nullable = false, unique = true)
     private String staffId;
 
-    @OneToMany(mappedBy = "portfolioEntry", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "portfolio_entry", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<PortfolioEntryJpa> portfolioEntry = new ArrayList<>();
 }

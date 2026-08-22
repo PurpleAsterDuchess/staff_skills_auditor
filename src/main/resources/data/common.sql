@@ -14,7 +14,7 @@ INSERT INTO user_roles (user_id, role_id) VALUES
 -- HR Facade / Synchronised Cache Data for Staff
 INSERT INTO staff_member (
     id, first_name, surname, email, hire_date, department,
-    line_manager_id, current_role, role_start_date, job_level,
+    line_manager_id, role_name, role_start_date, job_level,
     employment_type, employment_status
 ) VALUES
 -- Line Manager (Sarah Jane)
@@ -24,7 +24,7 @@ INSERT INTO staff_member (
 
 -- Staff Member (John Doe) managed by Sarah Jane
 ('STF1', 'John', 'Doe', 'john.doe@company.com', '2023-06-01', 'Engineering',
- 'STF-002', 'Junior Software Engineer', '2023-06-01', 'Junior',
+ 'STF2', 'Junior Software Engineer', '2023-06-01', 'Junior',
  'Full-Time', 'ACTIVE'),
 
 -- HR/Skill Manager (Alan Smith)
