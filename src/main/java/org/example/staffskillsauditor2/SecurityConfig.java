@@ -14,6 +14,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/skills/**").permitAll()
                         .requestMatchers("/portfolio/**").permitAll()
+                        .requestMatchers("/staff/**").permitAll()
                         .anyRequest().authenticated()
                 );
 
