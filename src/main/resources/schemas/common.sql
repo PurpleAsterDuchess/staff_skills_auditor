@@ -34,3 +34,21 @@ CREATE TABLE staff_member (
                               FOREIGN KEY (line_manager_id) REFERENCES staff_member(id)
 );
 
+CREATE TABLE event_store(
+                            id int AUTO_INCREMENT PRIMARY KEY,
+                            occurred_on DATE NOT NULL,
+                            event_body VARCHAR(65000) NOT NULL,
+                            event_type VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS event_publication (
+                                                 id UUID NOT NULL PRIMARY KEY,
+                                                 listener_id VARCHAR(512) NOT NULL,
+                                                 event_type VARCHAR(512) NOT NULL,
+                                                 serialized_event VARCHAR(4000) NOT NULL,
+                                                 publication_date TIMESTAMP WITH TIME ZONE NOT NULL,
+                                                 completion_date TIMESTAMP WITH TIME ZONE,
+                                                 status VARCHAR(20) DEFAULT ‘PUBLISHED’ NOT NULL,
+                                                 completion_attempts INT DEFAULT 0 NOT NULL,
+                                                 last_resubmission_date TIMESTAMP WITH TIME ZONE
+);
