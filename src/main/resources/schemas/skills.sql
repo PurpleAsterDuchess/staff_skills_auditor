@@ -8,7 +8,7 @@ CREATE TABLE skill_aggregate (
 
 CREATE TABLE skill_portfolio (
                                  id VARCHAR PRIMARY KEY,
-                                 staff_id VARCHAR NOT NULL UNIQUE, -- portfolio -||-------||- Staff Member
+                                 staff_id VARCHAR NOT NULL UNIQUE,
                                  FOREIGN KEY (staff_id) REFERENCES staff_member(id) ON DELETE CASCADE
 );
 
