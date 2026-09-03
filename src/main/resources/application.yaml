@@ -1,3 +1,5 @@
+server:
+  port: 8900
 spring:
   application:
     name: api
@@ -15,5 +17,19 @@ spring:
         - classpath:data/security.sql
         - classpath:data/common.sql
         - classpath:data/skills.sql
-server:
-  port: 8900
+  rabbitmq:
+    host: capybara-01.lmq.cloudamqp.com
+    username: xhuvvxgb
+    password: 0qhot8tm9uAb1I1tmiw_cOX_VoB9fWCW
+    virtual-host: xhuvvxgb
+    ssl:
+      enabled: true
+
+rabbitmq:
+  outbox:
+    bindings:
+      "[org.example.staffskillsauditor2.skills.domain.events.StaffMemberRegisteredEvent]":
+        exchange: "staff-management"
+        routing-key: "staffRegisteredKey"
+firebase:
+  web-api-key: "AIzaSyAv24cfVsap6Cfw7vBTp3Bn9TBEpIy1V2s"
