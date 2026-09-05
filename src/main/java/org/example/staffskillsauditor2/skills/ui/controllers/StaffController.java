@@ -1,4 +1,4 @@
-package org.example.staffskillsauditor2.skills.ui;
+package org.example.staffskillsauditor2.skills.ui.controllers;
 
 import lombok.AllArgsConstructor;
 import org.example.staffskillsauditor2.skills.ContextFacade;
@@ -21,7 +21,7 @@ public class StaffController {
     }
 
     @PostMapping
-    @ResponseStatus(HttpStatus.CREATED) // Returns HTTP 201 [Passage 71]
+    @ResponseStatus(HttpStatus.CREATED)
     public String registerStaffMember(@RequestBody RegisterStaffMemberCommand command) {
         return facade.registerStaffMember(command);
     }

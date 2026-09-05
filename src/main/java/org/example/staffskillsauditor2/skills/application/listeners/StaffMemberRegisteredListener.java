@@ -1,4 +1,4 @@
-package org.example.staffskillsauditor2.skills.application;
+package org.example.staffskillsauditor2.skills.application.listeners;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -33,6 +33,6 @@ public class StaffMemberRegisteredListener {
         portfolio.setStaffId(event.getStaffId());
         portfolioRepository.save(portfolio);
 
-        log.info("Successfully provisioned new Remote-Driven Skill Portfolio with ID: {}", portfolio.getId());
+        log.info("Successfully created new Skill Portfolio with ID: {}", portfolio.getId());
     }
 }

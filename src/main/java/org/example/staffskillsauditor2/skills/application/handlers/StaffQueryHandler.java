@@ -1,4 +1,4 @@
-package org.example.staffskillsauditor2.skills.application;
+package org.example.staffskillsauditor2.skills.application.handlers;
 
 import lombok.AllArgsConstructor;
 import org.example.staffskillsauditor2.skills.application.dto.StaffDTO;

@@ -51,7 +51,7 @@ public class AuthController {
         return ResponseEntity.ok(response);
     }
 
-    @PreAuthorize("isAuthenticated()")
+//    @PreAuthorize("isAuthenticated()")
     @GetMapping("/role-check")
     public ResponseEntity<String> roleCheck(Authentication authentication) {
         String roles = authentication.getAuthorities().stream()

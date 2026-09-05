@@ -1,4 +1,4 @@
-package org.example.staffskillsauditor2.skills.application;
+package org.example.staffskillsauditor2.skills.application.handlers;
 
 import lombok.AllArgsConstructor;
 import org.example.staffskillsauditor2.skills.application.dto.SkillDTO;
@@ -9,11 +9,14 @@ import org.example.staffskillsauditor2.skills.persistance.repositories.SkillRepo
 import org.springframework.stereotype.Service;
 
 import java.util.Objects;
+import java.util.stream.StreamSupport;
+import java.util.stream.Collectors;
 
 @AllArgsConstructor
 @Service
 public class SkillQueryHandler {
-    private SkillRepository skillRepository;
+
+    private final SkillRepository skillRepository;
 
     public SkillDTO findSkillById(String skillId) {
         Objects.requireNonNull(skillId, "Skill ID cannot be null");
@@ -22,5 +25,11 @@ public class SkillQueryHandler {
                 .orElseThrow(() -> new SkillNotFoundException("Skill not found for ID: " + skillId));
 
         return SkillJpaToDTOMapper.toSkillDTO(jpaEntity);
+    }
+
+    public Iterable<SkillDTO> findAllSkills() {
+        return StreamSupport.stream(skillRepository.findAll().spliterator(), false)
+                .map(SkillJpaToDTOMapper::toSkillDTO)
+                .collect(Collectors.toList());
     }
 }

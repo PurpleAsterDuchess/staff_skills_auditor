@@ -32,10 +32,12 @@ public class SecurityConfig {
                         .requestMatchers(PathRequest.toH2Console()).permitAll()
                         .anyRequest().authenticated()
                 )
+                /*
                 .oauth2ResourceServer(oauth2 -> oauth2 // intercept request
                         // apply custom convertor
                         .jwt(jwt -> jwt.jwtAuthenticationConverter(jwtAuthenticationConverter))
                 )
+                 */
                 .build();
     }
 }

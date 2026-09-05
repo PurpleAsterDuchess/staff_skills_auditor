@@ -1,4 +1,4 @@
-package org.example.staffskillsauditor2.skills.ui;
+package org.example.staffskillsauditor2.skills.ui.controllers;
 
 import org.example.staffskillsauditor2.skills.ContextFacade;
 import org.example.staffskillsauditor2.skills.application.dto.SkillDTO;
@@ -19,4 +19,9 @@ public class SkillController {
                 return facade.findSkillById(skill_id);
     }
 
+    @GetMapping
+    @ResponseStatus(HttpStatus.OK)
+    public Iterable<SkillDTO> getAllSkills() {
+        return facade.findAllSkills();
+    }
 }

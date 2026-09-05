@@ -7,6 +7,8 @@ import org.example.staffskillsauditor2.skills.persistance.entities.PortfolioEntr
 import org.example.staffskillsauditor2.skills.persistance.entities.SkillJpa;
 
 import java.util.Objects;
+import java.util.List;
+import java.util.ArrayList;
 
 public class PortfolioToJpaMapper {
 
@@ -16,6 +18,30 @@ public class PortfolioToJpaMapper {
 
         jpa.setId(domain.id().id());
         jpa.setStaffId(domain.staffId());
+
+        List<PortfolioEntryJpa> toRemove = new ArrayList<>();
+
+        for (PortfolioEntryJpa existingJpa : jpa.getPortfolioEntry()) {
+            if (existingJpa.getId() != null) {
+                PortfolioEntry matchingDomain = domain.entries().stream()
+                        .filter(de -> de.id() != null && de.id().equals(existingJpa.getId()))
+                        .findFirst()
+                        .orElse(null);
+
+                if (matchingDomain == null) {
+                    toRemove.add(existingJpa);
+                } else {
+                    existingJpa.setSkillLevel(matchingDomain.skillLevel());
+                    existingJpa.setExpirationDate(matchingDomain.expirationDate());
+                    existingJpa.setNotes(matchingDomain.notes());
+                    existingJpa.setVerificationStatus(matchingDomain.verificationStatus());
+                    existingJpa.setVerifiedBy(matchingDomain.verifiedBy());
+                    existingJpa.setVerifiedOn(matchingDomain.verifiedOn());
+                }
+            }
+        }
+
+        jpa.getPortfolioEntry().removeAll(toRemove);
 
         for (PortfolioEntry domainEntry : domain.entries()) {
             boolean jpaExists = jpa.getPortfolioEntry().stream()

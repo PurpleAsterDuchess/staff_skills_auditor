@@ -1,4 +1,4 @@
-package org.example.staffskillsauditor2.skills.application;
+package org.example.staffskillsauditor2.skills.application.listeners;
 
 import lombok.AllArgsConstructor;
 import org.example.staffskillsauditor2.skills.domain.events.CreateStaffMember;
