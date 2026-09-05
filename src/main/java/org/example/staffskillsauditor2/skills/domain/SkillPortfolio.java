@@ -82,4 +82,44 @@ public class SkillPortfolio extends AggregateRoot<SkillPortfolio> {
         );
         entries.add(verifiedEntry);
     }
+
+    public void unverifySkill(String skillId) {
+        PortfolioEntry existingEntry = entries.stream()
+                .filter(e -> e.skillId().equals(skillId))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("Skill not found in this portfolio"));
+
+        entries.remove(existingEntry);
+        PortfolioEntry unverifiedEntry = new PortfolioEntry(
+                existingEntry.id(),
+                skillId,
+                existingEntry.skillLevel(),
+                existingEntry.expirationDate(),
+                existingEntry.notes(),
+                "PENDING",
+                null,
+                null
+        );
+        entries.add(unverifiedEntry);
+    }
+
+    public void rejectSkill(String skillId, String rejectedBy) {
+        PortfolioEntry existingEntry = entries.stream()
+                .filter(e -> e.skillId().equals(skillId))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("Skill not found in this portfolio"));
+
+        entries.remove(existingEntry);
+        PortfolioEntry rejectedEntry = new PortfolioEntry(
+                existingEntry.id(),
+                skillId,
+                existingEntry.skillLevel(),
+                existingEntry.expirationDate(),
+                existingEntry.notes(),
+                "REJECTED",
+                rejectedBy,
+                LocalDateTime.now()
+        );
+        entries.add(rejectedEntry);
+    }
 }

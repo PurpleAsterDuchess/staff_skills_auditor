@@ -74,6 +74,14 @@ public class ContextFacade {
         portfolioCommandHandler.verifySkillInPortfolio(staffId, skillId, verifiedBy);
     }
 
+    public void unverifySkillInPortfolio(String staffId, String skillId, String unverifiedBy) {
+        portfolioCommandHandler.unverifySkillInPortfolio(staffId, skillId, unverifiedBy);
+    }
+
+    public void rejectSkillInPortfolio(String staffId, String skillId, String rejectedBy) {
+        portfolioCommandHandler.rejectSkillInPortfolio(staffId, skillId, rejectedBy);
+    }
+
 //    @PreAuthorize("hasAnyRole('ADMIN', 'MANAGER')")
     public List<PortfolioEntryDTO> findPendingSkills() {
         return portfolioQueryHandler.findPendingSkills();

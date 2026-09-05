@@ -62,10 +62,28 @@ public class PortfolioCommandHandler {
 
         PortfolioToJpaMapper.map(portfolio, jpaEntity);
         portfolioRepository.save(jpaEntity);
+    }
 
-        if (portfolio.domainEventsExist()) {
-            domainEventManager.manageDomainEvents(this.getClass().getSimpleName(), portfolio.listOfDomainEvents());
-            portfolio.clearDomainEvents();
-        }
+    @Transactional
+    public void unverifySkillInPortfolio(String staffId, String skillId, String unverifiedBy) {
+        PortfolioJpa jpaEntity = portfolioRepository.findByStaffId(staffId)
+                .orElseThrow(() -> new PortfolioNotFoundException("Portfolio not found for staff ID: " + staffId));
+
+        SkillPortfolio portfolio = PortfolioJpaToDomainMapper.map(jpaEntity);
+        portfolio.unverifySkill(skillId);
+        PortfolioToJpaMapper.map(portfolio, jpaEntity);
+        portfolioRepository.save(jpaEntity);
+    }
+
+    @Transactional
+    public void rejectSkillInPortfolio(String staffId, String skillId, String rejectedBy) {
+        PortfolioJpa jpaEntity = portfolioRepository.findByStaffId(staffId)
+                .orElseThrow(() -> new PortfolioNotFoundException("Portfolio not found for staff ID: " + staffId));
+
+        SkillPortfolio portfolio = PortfolioJpaToDomainMapper.map(jpaEntity);
+        portfolio.rejectSkill(skillId, rejectedBy);
+
+        PortfolioToJpaMapper.map(portfolio, jpaEntity);
+        portfolioRepository.save(jpaEntity);
     }
 }

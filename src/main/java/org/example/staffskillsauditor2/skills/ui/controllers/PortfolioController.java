@@ -4,9 +4,7 @@ import lombok.AllArgsConstructor;
 import org.example.staffskillsauditor2.skills.ContextFacade;
 import org.example.staffskillsauditor2.skills.application.dto.PortfolioDTO;
 import org.example.staffskillsauditor2.skills.application.dto.PortfolioEntryDTO;
-import org.example.staffskillsauditor2.skills.ui.commands.AllocateSkillCommand;
-import org.example.staffskillsauditor2.skills.ui.commands.EditSkillCommand;
-import org.example.staffskillsauditor2.skills.ui.commands.VerifySkillCommand;
+import org.example.staffskillsauditor2.skills.ui.commands.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -52,6 +50,26 @@ public class PortfolioController {
             @RequestBody VerifySkillCommand command
     ) {
         facade.verifySkillInPortfolio(portfolio_id, skill_id, command.verifiedBy());
+    }
+
+    @PostMapping("/{portfolio_id}/skills/{skill_id}/unverify")
+    @ResponseStatus(HttpStatus.OK)
+    public void unverifySkill(
+            @PathVariable String portfolio_id,
+            @PathVariable String skill_id,
+            @RequestBody UnverifySkillCommand command
+    ) {
+        facade.unverifySkillInPortfolio(portfolio_id, skill_id, command.unverifiedBy());
+    }
+
+    @PostMapping("/{portfolio_id}/skills/{skill_id}/reject")
+    @ResponseStatus(HttpStatus.OK)
+    public void rejectSkill(
+            @PathVariable String portfolio_id,
+            @PathVariable String skill_id,
+            @RequestBody RejectSkillCommand command
+    ) {
+        facade.rejectSkillInPortfolio(portfolio_id, skill_id, command.rejectedBy());
     }
 
     @GetMapping("/pending")
