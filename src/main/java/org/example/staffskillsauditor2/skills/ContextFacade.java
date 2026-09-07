@@ -10,6 +10,7 @@ import org.example.staffskillsauditor2.skills.application.dto.PortfolioDTO;
 import org.example.staffskillsauditor2.skills.application.dto.PortfolioEntryDTO;
 import org.example.staffskillsauditor2.skills.application.dto.SkillDTO;
 import org.example.staffskillsauditor2.skills.application.dto.StaffDTO;
+import org.example.staffskillsauditor2.skills.application.handlers.SkillCommandHandler;
 import org.example.staffskillsauditor2.skills.ui.commands.RegisterStaffMemberCommand;
 import org.springframework.stereotype.Component;
 
@@ -24,8 +25,9 @@ public class ContextFacade {
     private final StaffQueryHandler staffQueryHandler;
     private final StaffCommandHandler staffCommandHandler;
     private final PortfolioCommandHandler portfolioCommandHandler;
+    private final SkillCommandHandler skillCommandHandler;
 
-//    @PreAuthorize("hasAnyRole('ADMIN', 'MANAGER', 'STAFF', 'USER')")
+    //    @PreAuthorize("hasAnyRole('ADMIN', 'MANAGER', 'STAFF', 'USER')")
     public PortfolioDTO findPortfolioById(String portfolioId) {
         return portfolioQueryHandler.findPortfolioById(portfolioId);
     }
@@ -35,7 +37,27 @@ public class ContextFacade {
         return skillQueryHandler.findSkillById(skillId);
     }
 
-//    @PreAuthorize("hasAnyRole('ADMIN', 'MANAGER', 'STAFF', 'USER')")
+    //    @PreAuthorize("hasAnyRole('ADMIN', 'MANAGER')")
+    public void createSkill(String id, String name, String description, String category) {
+        skillCommandHandler.createSkill(id, name, description, category);
+    }
+
+//    @PreAuthorize("hasAnyRole('ADMIN', 'MANAGER')")
+    public void deactivateSkill(String id) {
+        skillCommandHandler.deactivateSkill(id);
+    }
+
+    //    @PreAuthorize("hasAnyRole('ADMIN', 'MANAGER')")
+    public void activateSkill(String id) {
+        skillCommandHandler.activateSkill(id);
+    }
+    
+    //    @PreAuthorize("hasAnyRole('ADMIN', 'MANAGER')")
+    public void updateSkill(String id, String name, String description, String category) {
+        skillCommandHandler.updateSkill(id, name, description, category);
+    }
+
+    //    @PreAuthorize("hasAnyRole('ADMIN', 'MANAGER', 'STAFF', 'USER')")
     public Iterable<SkillDTO> findAllSkills() {
         return skillQueryHandler.findAllSkills();
     }
