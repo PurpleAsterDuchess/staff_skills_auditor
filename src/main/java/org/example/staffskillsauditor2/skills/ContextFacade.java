@@ -88,6 +88,11 @@ public class ContextFacade {
     }
 
 //    @PreAuthorize("hasAnyRole('ADMIN', 'MANAGER')")
+    public List<PortfolioEntryDTO> findFilteredSkills(String staffId, String skillId, Integer skillLevel) {
+        return portfolioQueryHandler.findFilteredSkills(staffId, skillId, skillLevel);
+    }
+
+//    @PreAuthorize("hasAnyRole('ADMIN', 'MANAGER')")
     public List<PortfolioEntryDTO> findExpiredSkills() {
         return portfolioQueryHandler.findExpiredSkills();
     }

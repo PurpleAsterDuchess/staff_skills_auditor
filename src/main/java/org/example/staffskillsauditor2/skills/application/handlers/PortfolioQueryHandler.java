@@ -6,9 +6,11 @@ import org.example.staffskillsauditor2.skills.application.dto.PortfolioEntryDTO;
 import org.example.staffskillsauditor2.skills.application.exceptions.PortfolioNotFoundException;
 import org.example.staffskillsauditor2.skills.application.mappers.PortfolioJpaToDTOMapper;
 import org.example.staffskillsauditor2.skills.application.mappers.PortfolioEntryJpaToDTOMapper;
+import org.example.staffskillsauditor2.skills.persistance.entities.PortfolioEntryJpa;
 import org.example.staffskillsauditor2.skills.persistance.entities.PortfolioJpa;
 import org.example.staffskillsauditor2.skills.persistance.repositories.PortfolioRepository;
 import org.example.staffskillsauditor2.skills.persistance.repositories.PortfolioEntryRepository;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -42,5 +44,21 @@ public class PortfolioQueryHandler {
                 .collect(Collectors.toList());
     }
 
+    public List<PortfolioEntryDTO> findFilteredSkills(String staffId, String skillId, Integer skillLevel) {
+        Specification<PortfolioEntryJpa> spec = (root, query, cb) -> cb.conjunction();
 
+        if (staffId != null && !staffId.trim().isEmpty()) {
+            spec = spec.and((root, query, cb) -> cb.equal(root.get("portfolio").get("staffId"), staffId.trim()));
+        }
+        if (skillId != null && !skillId.trim().isEmpty()) {
+            spec = spec.and((root, query, cb) -> cb.equal(root.get("skill").get("id"), skillId.trim()));
+        }
+        if (skillLevel != null) {
+            spec = spec.and((root, query, cb) -> cb.equal(root.get("skillLevel"), skillLevel));
+        }
+
+        return portfolioEntryRepository.findAll(spec).stream()
+                .map(PortfolioEntryJpaToDTOMapper::toPortfolioEntryDTO)
+                .collect(Collectors.toList());
+    }
 }

@@ -84,4 +84,13 @@ public class PortfolioController {
         return facade.findExpiredSkills();
     }
 
+    @GetMapping("/skills")
+    @ResponseStatus(HttpStatus.OK)
+    public List<PortfolioEntryDTO> getFilteredSkills(
+            @RequestParam(value = "staffId", required = false) String staffId,
+            @RequestParam(value = "skillId", required = false) String skillId,
+            @RequestParam(value = "skillLevel", required = false) Integer skillLevel
+    ) {
+        return facade.findFilteredSkills(staffId, skillId, skillLevel);
+    }
 }
