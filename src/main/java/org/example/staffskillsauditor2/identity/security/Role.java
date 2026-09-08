@@ -2,8 +2,9 @@ package org.example.staffskillsauditor2.identity.security;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 public enum Role {
-    USER,
+    STAFF,
     MANAGER,
+    SKILL_MANAGER,
     ADMIN;
 
     public static final String PREFIX = "ROLE_";

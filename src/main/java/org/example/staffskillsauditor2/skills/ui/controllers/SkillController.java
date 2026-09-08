@@ -5,6 +5,7 @@ import org.example.staffskillsauditor2.skills.application.dto.SkillDTO;
 import org.example.staffskillsauditor2.skills.ui.commands.CreateSkillCommand;
 import lombok.AllArgsConstructor;
 import org.example.staffskillsauditor2.skills.ui.commands.UpdateSkillCommand;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.HttpStatus;
 
@@ -21,30 +22,35 @@ public class SkillController {
         return facade.findSkillById(skill_id);
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN', 'SKILL_MANAGER', 'MANAGER', 'STAFF' )")
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public Iterable<SkillDTO> getAllSkills() {
         return facade.findAllSkills();
     }
 
+    @PreAuthorize("hasAnyRole('SKILL_MANAGER')")
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public void createSkill(@RequestBody CreateSkillCommand command) {
         facade.createSkill(command.id(), command.name(), command.description(), command.category());
     }
 
+    @PreAuthorize("hasAnyRole('SKILL_MANAGER')")
     @PostMapping("/{skill_id}/deactivate")
     @ResponseStatus(HttpStatus.OK)
     public void deactivateSkill(@PathVariable String skill_id) {
         facade.deactivateSkill(skill_id);
     }
 
+    @PreAuthorize("hasAnyRole('SKILL_MANAGER')")
     @PostMapping("/{skill_id}/activate")
     @ResponseStatus(HttpStatus.OK)
     public void activateSkill(@PathVariable String skill_id) {
         facade.activateSkill(skill_id);
     }
 
+    @PreAuthorize("hasAnyRole('SKILL_MANAGER')")
     @PatchMapping("/{skill_id}")
     @ResponseStatus(HttpStatus.OK)
     public void updateSkill(

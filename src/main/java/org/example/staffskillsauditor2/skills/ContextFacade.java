@@ -13,6 +13,7 @@ import org.example.staffskillsauditor2.skills.application.dto.StaffDTO;
 import org.example.staffskillsauditor2.skills.application.handlers.SkillCommandHandler;
 import org.example.staffskillsauditor2.skills.ui.commands.RegisterStaffMemberCommand;
 import org.example.staffskillsauditor2.skills.ui.commands.UpdateStaffDetailsCommand;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -28,7 +29,7 @@ public class ContextFacade {
     private final PortfolioCommandHandler portfolioCommandHandler;
     private final SkillCommandHandler skillCommandHandler;
 
-    //    @PreAuthorize("hasAnyRole('ADMIN', 'MANAGER', 'STAFF', 'USER')")
+//    @PreAuthorize("hasAnyRole('ADMIN', 'SKILL_MANAGER', 'MANAGER', 'STAFF' )")
     public PortfolioDTO findPortfolioById(String portfolioId) {
         return portfolioQueryHandler.findPortfolioById(portfolioId);
     }

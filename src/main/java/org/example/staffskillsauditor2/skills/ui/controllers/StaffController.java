@@ -6,6 +6,7 @@ import org.example.staffskillsauditor2.skills.application.dto.StaffDTO;
 import org.example.staffskillsauditor2.skills.ui.commands.RegisterStaffMemberCommand;
 import org.example.staffskillsauditor2.skills.ui.commands.UpdateStaffDetailsCommand;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RequestMapping("/staff")
@@ -27,6 +28,7 @@ public class StaffController {
         return facade.registerStaffMember(command);
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @PatchMapping("/{staff_id}")
     @ResponseStatus(HttpStatus.OK)
     public void patchStaffMember(

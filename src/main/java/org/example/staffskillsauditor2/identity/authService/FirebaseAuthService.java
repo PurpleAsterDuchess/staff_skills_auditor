@@ -41,12 +41,12 @@ public class FirebaseAuthService {
         // Confirm role passed in request exists
         String confirmedRole = role != null
                                     ? Role.fromString(role).getAuthority()
-                                    : Role.USER.name();
+                                    : Role.STAFF.name();
 
         // Custom claims
         Map<String, Object> customClaims = Map.of(
                 "role", confirmedRole,
-                "admin", false
+                "admin", "ROLE_ADMIN".equals(confirmedRole)
         );
 
         firebaseAuth.setCustomUserClaims(userRecord.getUid(), customClaims);

@@ -6,6 +6,7 @@ import org.example.staffskillsauditor2.skills.application.dto.PortfolioDTO;
 import org.example.staffskillsauditor2.skills.application.dto.PortfolioEntryDTO;
 import org.example.staffskillsauditor2.skills.ui.commands.*;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,6 +24,7 @@ public class PortfolioController {
         return facade.findPortfolioById(portfolio_id);
     }
 
+    @PreAuthorize("hasAnyRole('STAFF' )")
     @PostMapping("/{staff_id}/skills")
     @ResponseStatus(HttpStatus.CREATED)
     public void allocateSkill(
@@ -32,6 +34,7 @@ public class PortfolioController {
         facade.allocateSkillToPortfolio(staff_id, command.skillId(), command.skillLevel(), command.notes());
     }
 
+    @PreAuthorize("hasAnyRole('STAFF', 'MANAGER')")
     @PutMapping("/{staff_id}/skills/{skill_id}")
     @ResponseStatus(HttpStatus.OK)
     public void editSkill(
@@ -42,6 +45,7 @@ public class PortfolioController {
         facade.editSkillInPortfolio(staff_id, skill_id, command.skillLevel(), command.notes());
     }
 
+    @PreAuthorize("hasAnyRole('MANAGER')")
     @PostMapping("/{portfolio_id}/skills/{skill_id}/verify")
     @ResponseStatus(HttpStatus.OK)
     public void verifySkill(
@@ -52,6 +56,7 @@ public class PortfolioController {
         facade.verifySkillInPortfolio(portfolio_id, skill_id, command.verifiedBy());
     }
 
+    @PreAuthorize("hasAnyRole('MANAGER')")
     @PostMapping("/{portfolio_id}/skills/{skill_id}/unverify")
     @ResponseStatus(HttpStatus.OK)
     public void unverifySkill(
@@ -62,6 +67,7 @@ public class PortfolioController {
         facade.unverifySkillInPortfolio(portfolio_id, skill_id, command.unverifiedBy());
     }
 
+    @PreAuthorize("hasAnyRole('MANAGER')")
     @PostMapping("/{portfolio_id}/skills/{skill_id}/reject")
     @ResponseStatus(HttpStatus.OK)
     public void rejectSkill(
@@ -72,18 +78,21 @@ public class PortfolioController {
         facade.rejectSkillInPortfolio(portfolio_id, skill_id, command.rejectedBy());
     }
 
+    @PreAuthorize("hasAnyRole('MANAGER')")
     @GetMapping("/pending")
     @ResponseStatus(HttpStatus.OK)
     public List<PortfolioEntryDTO> getPendingSkills() {
         return facade.findPendingSkills();
     }
 
+    @PreAuthorize("hasAnyRole('MANAGER', 'SKILL_MANAGER')")
     @GetMapping("/expired")
     @ResponseStatus(HttpStatus.OK)
     public List<PortfolioEntryDTO> getExpiredSkills() {
         return facade.findExpiredSkills();
     }
 
+    @PreAuthorize("hasAnyRole('MANAGER', 'SKILL_MANAGER')")
     @GetMapping("/skills")
     @ResponseStatus(HttpStatus.OK)
     public List<PortfolioEntryDTO> getFilteredSkills(
