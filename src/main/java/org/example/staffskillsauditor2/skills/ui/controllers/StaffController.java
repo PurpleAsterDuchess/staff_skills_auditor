@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import org.example.staffskillsauditor2.skills.ContextFacade;
 import org.example.staffskillsauditor2.skills.application.dto.StaffDTO;
 import org.example.staffskillsauditor2.skills.ui.commands.RegisterStaffMemberCommand;
+import org.example.staffskillsauditor2.skills.ui.commands.UpdateStaffDetailsCommand;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,5 +25,14 @@ public class StaffController {
     @ResponseStatus(HttpStatus.CREATED)
     public String registerStaffMember(@RequestBody RegisterStaffMemberCommand command) {
         return facade.registerStaffMember(command);
+    }
+
+    @PatchMapping("/{staff_id}")
+    @ResponseStatus(HttpStatus.OK)
+    public void patchStaffMember(
+            @PathVariable("staff_id") String staffId,
+            @RequestBody UpdateStaffDetailsCommand command
+    ) {
+        facade.updateStaffDetails(staffId, command);
     }
 }

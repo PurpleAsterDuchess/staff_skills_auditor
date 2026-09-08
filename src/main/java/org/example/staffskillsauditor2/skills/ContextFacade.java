@@ -12,6 +12,7 @@ import org.example.staffskillsauditor2.skills.application.dto.SkillDTO;
 import org.example.staffskillsauditor2.skills.application.dto.StaffDTO;
 import org.example.staffskillsauditor2.skills.application.handlers.SkillCommandHandler;
 import org.example.staffskillsauditor2.skills.ui.commands.RegisterStaffMemberCommand;
+import org.example.staffskillsauditor2.skills.ui.commands.UpdateStaffDetailsCommand;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -117,5 +118,10 @@ public class ContextFacade {
 //    @PreAuthorize("hasAnyRole('ADMIN', 'MANAGER')")
     public List<PortfolioEntryDTO> findExpiredSkills() {
         return portfolioQueryHandler.findExpiredSkills();
+    }
+
+    //    @PreAuthorize("hasAnyRole('ADMIN')")
+    public void updateStaffDetails(String staffId, UpdateStaffDetailsCommand command) {
+        staffCommandHandler.updateStaffDetails(staffId, command);
     }
 }
