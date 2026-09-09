@@ -18,7 +18,7 @@ public class SkillJpaToDomainMapper {
                 jpa.getName(),
                 jpa.getDescription(),
                 jpa.getCategory(),
-                skillStatus
+                jpa.isActive()
         );
     }
 }

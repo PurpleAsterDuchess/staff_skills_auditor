@@ -15,6 +15,6 @@ public class SkillToJpaMapper {
         jpa.setDescription(domain.description());
         jpa.setCategory(domain.category());
 
-        jpa.setActive("ACTIVE".equals(domain.status()));
+        jpa.setActive(domain.isActive());
     }
 }
