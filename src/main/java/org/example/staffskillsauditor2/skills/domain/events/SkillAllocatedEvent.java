@@ -6,7 +6,7 @@ import org.example.staffskillsauditor2.common.events.Event;
 
 @Getter
 public class SkillAllocatedEvent implements LocalEvent {
-    private final Long id; // Database outbox ID [17]
+    private final Long id;
     private final String portfolioId;
     private final String staffId;
     private final String skillId;

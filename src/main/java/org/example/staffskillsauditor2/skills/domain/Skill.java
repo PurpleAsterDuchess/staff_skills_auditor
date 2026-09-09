@@ -17,7 +17,6 @@ public class Skill extends AggregateRoot<Skill> {
     public static final String NAME_CANNOT_BE_BLANK = "Skill name cannot be blank";
     public static final String CATEGORY_CANNOT_BE_BLANK = "Skill category cannot be blank";
 
-
     private Skill(Identity<Skill> id, String name, String description, String category, boolean isActive) {
         super(Objects.requireNonNull(id, IDENTITY_CANNOT_BE_NULL));
 

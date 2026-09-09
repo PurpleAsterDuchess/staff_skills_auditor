@@ -2,6 +2,7 @@ package org.example.staffskillsauditor2.skills.domain;
 
 import org.example.staffskillsauditor2.common.domain.AggregateRoot;
 import org.example.staffskillsauditor2.common.domain.Identity;
+import org.example.staffskillsauditor2.skills.application.exceptions.SkillNotFoundException;
 import org.example.staffskillsauditor2.skills.domain.events.SkillAllocatedEvent;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -46,7 +47,7 @@ public class SkillPortfolio extends AggregateRoot<SkillPortfolio> {
         PortfolioEntry existingEntry = entries.stream()
                 .filter(e -> e.skillId().equals(skillId))
                 .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("Skill not found in this portfolio"));
+                .orElseThrow(() -> new SkillNotFoundException(skillId));
 
         entries.remove(existingEntry);
         PortfolioEntry updatedEntry = new PortfolioEntry(
@@ -67,7 +68,7 @@ public class SkillPortfolio extends AggregateRoot<SkillPortfolio> {
         PortfolioEntry existingEntry = entries.stream()
                 .filter(e -> e.skillId().equals(skillId))
                 .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("Skill not found in this portfolio"));
+                .orElseThrow(() -> new SkillNotFoundException(skillId));
 
         entries.remove(existingEntry);
         PortfolioEntry verifiedEntry = new PortfolioEntry(
@@ -87,7 +88,7 @@ public class SkillPortfolio extends AggregateRoot<SkillPortfolio> {
         PortfolioEntry existingEntry = entries.stream()
                 .filter(e -> e.skillId().equals(skillId))
                 .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("Skill not found in this portfolio"));
+                .orElseThrow(() -> new SkillNotFoundException(skillId));
 
         entries.remove(existingEntry);
         PortfolioEntry unverifiedEntry = new PortfolioEntry(
@@ -107,7 +108,7 @@ public class SkillPortfolio extends AggregateRoot<SkillPortfolio> {
         PortfolioEntry existingEntry = entries.stream()
                 .filter(e -> e.skillId().equals(skillId))
                 .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("Skill not found in this portfolio"));
+                .orElseThrow(() -> new SkillNotFoundException(skillId));
 
         entries.remove(existingEntry);
         PortfolioEntry rejectedEntry = new PortfolioEntry(
