@@ -1,7 +1,7 @@
 --------------------------------
 -- Aggregates
 --------------------------------
-INSERT INTO skill_aggregate (id, name, description, category, is_active) VALUES
+INSERT INTO skill (id, name, description, category, is_active) VALUES
                                                                              ('SKL1', 'Java Programming', 'Core Java syntax, OOP, Concurrency, and JVM performance tuning.', 'Technical', TRUE),
                                                                              ('SKL2', 'Spring Boot Microservices', 'Building cloud-native REST APIs, Spring Data, and security frameworks.', 'Technical', TRUE),
                                                                              ('SKL3', 'Domain-Driven Design (DDD)', 'Strategic mapping, aggregates, value objects, and bounded contexts.', 'Technical', TRUE),

@@ -1,4 +1,4 @@
-CREATE TABLE skill_aggregate (
+CREATE TABLE skill (
                                  id VARCHAR PRIMARY KEY,
                                  name VARCHAR(100) NOT NULL UNIQUE,
                                  description VARCHAR(500) NOT NULL,
@@ -15,7 +15,7 @@ CREATE TABLE skill_portfolio (
 CREATE TABLE portfolio_entry (
                                  id INT AUTO_INCREMENT PRIMARY KEY,
                                  portfolio_id VARCHAR NOT NULL, -- FK Aggregate Root
-                                 skill_id VARCHAR NOT NULL,     -- FK Skill Aggregate
+                                 skill_id VARCHAR NOT NULL,     -- FK Skill
 
                                  skill_level INT NOT NULL,
                                  expiration_date DATE,
@@ -26,7 +26,7 @@ CREATE TABLE portfolio_entry (
                                  verified_on TIMESTAMP,
 
                                  FOREIGN KEY (portfolio_id) REFERENCES skill_portfolio(id) ON DELETE CASCADE,
-                                 FOREIGN KEY (skill_id) REFERENCES skill_aggregate(id) ON DELETE RESTRICT,
+                                 FOREIGN KEY (skill_id) REFERENCES skill(id) ON DELETE RESTRICT,
                                  FOREIGN KEY (verified_by) REFERENCES staff_member(id) ON DELETE SET NULL,
 
     -- prevent duplicate allocations of the same skill

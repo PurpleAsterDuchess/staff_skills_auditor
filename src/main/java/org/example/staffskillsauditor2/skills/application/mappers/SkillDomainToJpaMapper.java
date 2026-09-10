@@ -7,7 +7,7 @@ import java.util.Objects;
 public class SkillDomainToJpaMapper {
 
     public static SkillJpa map(SkillAggregate domain) {
-        Objects.requireNonNull(domain, "Skill aggregate cannot be null");
+        Objects.requireNonNull(domain, "Skill cannot be null");
 
         SkillJpa jpa = new SkillJpa();
         jpa.setId(domain.id().id());

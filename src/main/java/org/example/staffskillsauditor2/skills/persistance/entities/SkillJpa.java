@@ -6,7 +6,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Entity(name = "skill")
-@Table(name = "skill_aggregate")
+@Table(name = "skill")
 @Getter
 @Setter
 @ToString
