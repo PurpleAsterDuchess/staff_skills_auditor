@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 @DisplayName("Skill Domain Aggregate Root Tests")
-class SkillAggregateUnitTests {
+class SkillUnitTests {
 
     private String validId;
     private String validName;
