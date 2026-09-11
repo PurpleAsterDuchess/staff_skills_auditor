@@ -2,8 +2,8 @@ package org.example.staffskillsauditor2.portfolio.domain;
 
 import org.example.staffskillsauditor2.common.domain.AggregateRoot;
 import org.example.staffskillsauditor2.common.domain.Identity;
-import org.example.staffskillsauditor2.skills.application.exceptions.SkillNotFoundException;
-import org.example.staffskillsauditor2.skills.domain.events.SkillAllocatedEvent;
+import org.example.staffskillsauditor2.portfolio.domain.exceptions.SkillNotFoundException;
+import org.example.staffskillsauditor2.portfolio.domain.events.SkillAllocatedEvent;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -41,27 +41,22 @@ public class SkillPortfolio extends AggregateRoot<SkillPortfolio> {
     public String staffId() { return staffId; }
     public List<PortfolioEntry> entries() { return Collections.unmodifiableList(entries); }
     public void editSkill(String skillId, int level, String notes) {
-        if (level < 1 || level > 5) {
-            throw new IllegalArgumentException("Skill level must be between 1 and 5");
-        }
         PortfolioEntry existingEntry = entries.stream()
                 .filter(e -> e.skillId().equals(skillId))
                 .findFirst()
                 .orElseThrow(() -> new SkillNotFoundException(skillId));
 
-        entries.remove(existingEntry);
-        PortfolioEntry updatedEntry = new PortfolioEntry(
-                existingEntry.id(),
-                skillId,
-                level,
-                existingEntry.expirationDate(),
-                notes,
-                "PENDING",
-                null,
-                null
+        existingEntry.edit(level, notes);
+
+        this.addDomainEvent(
+                new SkillAllocatedEvent(
+                        this.id().id(),
+                        staffId,
+                        skillId,
+                        level,
+                        notes
+                )
         );
-        entries.add(updatedEntry);
-        this.addDomainEvent(new SkillAllocatedEvent(this.id().id(), staffId, skillId, level, notes));
     }
 
     public void verifySkill(String skillId, String verifiedBy) {
@@ -70,18 +65,7 @@ public class SkillPortfolio extends AggregateRoot<SkillPortfolio> {
                 .findFirst()
                 .orElseThrow(() -> new SkillNotFoundException(skillId));
 
-        entries.remove(existingEntry);
-        PortfolioEntry verifiedEntry = new PortfolioEntry(
-                existingEntry.id(),
-                skillId,
-                existingEntry.skillLevel(),
-                existingEntry.expirationDate(),
-                existingEntry.notes(),
-                "VERIFIED",
-                verifiedBy,
-                LocalDateTime.now()
-        );
-        entries.add(verifiedEntry);
+        existingEntry.verify(verifiedBy, LocalDateTime.now());
     }
 
     public void unverifySkill(String skillId) {
@@ -90,18 +74,7 @@ public class SkillPortfolio extends AggregateRoot<SkillPortfolio> {
                 .findFirst()
                 .orElseThrow(() -> new SkillNotFoundException(skillId));
 
-        entries.remove(existingEntry);
-        PortfolioEntry unverifiedEntry = new PortfolioEntry(
-                existingEntry.id(),
-                skillId,
-                existingEntry.skillLevel(),
-                existingEntry.expirationDate(),
-                existingEntry.notes(),
-                "PENDING",
-                null,
-                null
-        );
-        entries.add(unverifiedEntry);
+        existingEntry.unverify();
     }
 
     public void rejectSkill(String skillId, String rejectedBy) {
@@ -110,17 +83,6 @@ public class SkillPortfolio extends AggregateRoot<SkillPortfolio> {
                 .findFirst()
                 .orElseThrow(() -> new SkillNotFoundException(skillId));
 
-        entries.remove(existingEntry);
-        PortfolioEntry rejectedEntry = new PortfolioEntry(
-                existingEntry.id(),
-                skillId,
-                existingEntry.skillLevel(),
-                existingEntry.expirationDate(),
-                existingEntry.notes(),
-                "REJECTED",
-                rejectedBy,
-                LocalDateTime.now()
-        );
-        entries.add(rejectedEntry);
+        existingEntry.reject(rejectedBy, LocalDateTime.now());
     }
 }

@@ -1,9 +1,9 @@
 package org.example.staffskillsauditor2.portfolio.application.listeners;
 
 import lombok.AllArgsConstructor;
-import org.example.staffskillsauditor2.skills.domain.events.StaffMemberCreatedEvent;
-import org.example.staffskillsauditor2.skills.persistance.entities.PortfolioJpa;
-import org.example.staffskillsauditor2.skills.persistance.repositories.PortfolioRepository;
+import org.example.staffskillsauditor2.portfolio.domain.events.StaffMemberCreatedEvent;
+import org.example.staffskillsauditor2.portfolio.persistance.entities.PortfolioJpa;
+import org.example.staffskillsauditor2.portfolio.persistance.repositories.PortfolioRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.modulith.events.ApplicationModuleListener;

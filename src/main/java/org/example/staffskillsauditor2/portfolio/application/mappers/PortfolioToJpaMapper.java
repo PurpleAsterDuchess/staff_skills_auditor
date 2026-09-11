@@ -2,13 +2,13 @@ package org.example.staffskillsauditor2.portfolio.application.mappers;
 
 import org.example.staffskillsauditor2.portfolio.domain.PortfolioEntry;
 import org.example.staffskillsauditor2.portfolio.domain.SkillPortfolio;
-import org.example.staffskillsauditor2.skills.persistance.entities.PortfolioJpa;
-import org.example.staffskillsauditor2.skills.persistance.entities.PortfolioEntryJpa;
+import org.example.staffskillsauditor2.portfolio.persistance.entities.PortfolioEntryJpa;
+import org.example.staffskillsauditor2.portfolio.persistance.entities.PortfolioJpa;
 import org.example.staffskillsauditor2.skills.persistance.entities.SkillJpa;
 
-import java.util.Objects;
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 public class PortfolioToJpaMapper {
 
@@ -19,37 +19,33 @@ public class PortfolioToJpaMapper {
         jpa.setId(domain.id().id());
         jpa.setStaffId(domain.staffId());
 
-        List<PortfolioEntryJpa> toRemove = new ArrayList<>();
-
-        for (PortfolioEntryJpa existingJpa : jpa.getPortfolioEntry()) {
-            if (existingJpa.getId() != null) {
-                PortfolioEntry matchingDomain = domain.entries().stream()
-                        .filter(de -> de.id() != null && de.id().equals(existingJpa.getId()))
-                        .findFirst()
-                        .orElse(null);
-
-                if (matchingDomain == null) {
-                    toRemove.add(existingJpa);
-                } else {
-                    existingJpa.setSkillLevel(matchingDomain.skillLevel());
-                    existingJpa.setExpirationDate(matchingDomain.expirationDate());
-                    existingJpa.setNotes(matchingDomain.notes());
-                    existingJpa.setVerificationStatus(matchingDomain.verificationStatus());
-                    existingJpa.setVerifiedBy(matchingDomain.verifiedBy());
-                    existingJpa.setVerifiedOn(matchingDomain.verifiedOn());
-                }
-            }
-        }
-
-        jpa.getPortfolioEntry().removeAll(toRemove);
+        List<PortfolioEntryJpa> existingEntries = jpa.getPortfolioEntry();
 
         for (PortfolioEntry domainEntry : domain.entries()) {
-            boolean jpaExists = jpa.getPortfolioEntry().stream()
-                    .anyMatch(existingJpa -> existingJpa.getId() != null && existingJpa.getId().equals(domainEntry.id()));
 
-            if (!jpaExists && domainEntry.id() == null) {
+            PortfolioEntryJpa existingJpa = existingEntries.stream()
+                    .filter(jpaEntry ->
+                            jpaEntry.getSkill() != null
+                                    && jpaEntry.getSkill().getId() != null
+                                    && jpaEntry.getSkill().getId().equals(domainEntry.skillId())
+                    )
+                    .findFirst()
+                    .orElse(null);
+
+            if (existingJpa != null) {
+                existingJpa.setSkillLevel(domainEntry.skillLevel());
+                existingJpa.setExpirationDate(domainEntry.expirationDate());
+                existingJpa.setNotes(domainEntry.notes());
+                existingJpa.setVerificationStatus(
+                        domainEntry.verificationStatus().name()
+                );
+                existingJpa.setVerifiedBy(domainEntry.verifiedBy());
+                existingJpa.setVerifiedOn(domainEntry.verifiedOn());
+
+            } else {
+
                 PortfolioEntryJpa newEntryJpa = new PortfolioEntryJpa();
-                newEntryJpa.setId(null);
+
                 newEntryJpa.setPortfolio(jpa);
 
                 SkillJpa skillJpa = new SkillJpa();
@@ -59,12 +55,43 @@ public class PortfolioToJpaMapper {
                 newEntryJpa.setSkillLevel(domainEntry.skillLevel());
                 newEntryJpa.setExpirationDate(domainEntry.expirationDate());
                 newEntryJpa.setNotes(domainEntry.notes());
-                newEntryJpa.setVerificationStatus(domainEntry.verificationStatus());
+                newEntryJpa.setVerificationStatus(
+                        domainEntry.verificationStatus().name()
+                );
                 newEntryJpa.setVerifiedBy(domainEntry.verifiedBy());
                 newEntryJpa.setVerifiedOn(domainEntry.verifiedOn());
 
-                jpa.getPortfolioEntry().add(newEntryJpa);
+                existingEntries.add(newEntryJpa);
             }
         }
+
+        /*
+         * Remove JPA entries that no longer exist in the domain.
+         *
+         * This is done by skillId because it is the stable identifier
+         * shared between the current domain and persistence models.
+         */
+        List<PortfolioEntryJpa> toRemove = new ArrayList<>();
+
+        for (PortfolioEntryJpa existingJpa : existingEntries) {
+
+            if (existingJpa.getSkill() == null
+                    || existingJpa.getSkill().getId() == null) {
+                continue;
+            }
+
+            boolean existsInDomain = domain.entries().stream()
+                    .anyMatch(domainEntry ->
+                            domainEntry.skillId().equals(
+                                    existingJpa.getSkill().getId()
+                            )
+                    );
+
+            if (!existsInDomain) {
+                toRemove.add(existingJpa);
+            }
+        }
+
+        existingEntries.removeAll(toRemove);
     }
 }

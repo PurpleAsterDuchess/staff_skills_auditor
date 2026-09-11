@@ -1,4 +1,4 @@
-package org.example.staffskillsauditor2.skills.domain.events;
+package org.example.staffskillsauditor2.portfolio.domain.events;
 
 import lombok.Getter;
 import org.example.staffskillsauditor2.common.events.LocalEvent;

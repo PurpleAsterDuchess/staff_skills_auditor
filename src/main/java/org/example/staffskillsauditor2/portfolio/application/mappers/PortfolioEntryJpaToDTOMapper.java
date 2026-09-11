@@ -1,7 +1,7 @@
 package org.example.staffskillsauditor2.portfolio.application.mappers;
 
 import org.example.staffskillsauditor2.portfolio.application.dto.PortfolioEntryDTO;
-import org.example.staffskillsauditor2.skills.persistance.entities.PortfolioEntryJpa;
+import org.example.staffskillsauditor2.portfolio.persistance.entities.PortfolioEntryJpa;
 
 import java.util.Objects;
 

@@ -1,12 +1,12 @@
 package org.example.staffskillsauditor2.skills.application.mappers;
 
-import org.example.staffskillsauditor2.skills.domain.SkillAggregate;
+import org.example.staffskillsauditor2.skills.domain.Skill;
 import org.example.staffskillsauditor2.skills.persistance.entities.SkillJpa;
 import java.util.Objects;
 
 public class SkillDomainToJpaMapper {
 
-    public static SkillJpa map(SkillAggregate domain) {
+    public static SkillJpa map(Skill domain) {
         Objects.requireNonNull(domain, "Skill cannot be null");
 
         SkillJpa jpa = new SkillJpa();

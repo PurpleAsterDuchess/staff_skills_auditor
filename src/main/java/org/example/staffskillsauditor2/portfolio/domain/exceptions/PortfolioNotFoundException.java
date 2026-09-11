@@ -1,4 +1,4 @@
-package org.example.staffskillsauditor2.portfolio.application.exceptions;
+package org.example.staffskillsauditor2.portfolio.domain.exceptions;
 
 public class PortfolioNotFoundException extends RuntimeException {
     public PortfolioNotFoundException(String portfolio_id) {

@@ -1,4 +1,4 @@
-package org.example.staffskillsauditor2.skills.persistance.entities;
+package org.example.staffskillsauditor2.portfolio.persistance.entities;
 
 import jakarta.persistence.*;
 import lombok.Getter;

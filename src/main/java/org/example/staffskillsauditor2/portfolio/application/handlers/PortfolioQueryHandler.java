@@ -3,13 +3,13 @@ package org.example.staffskillsauditor2.portfolio.application.handlers;
 import lombok.AllArgsConstructor;
 import org.example.staffskillsauditor2.portfolio.application.dto.PortfolioDTO;
 import org.example.staffskillsauditor2.portfolio.application.dto.PortfolioEntryDTO;
-import org.example.staffskillsauditor2.portfolio.application.exceptions.PortfolioNotFoundException;
+import org.example.staffskillsauditor2.portfolio.domain.exceptions.PortfolioNotFoundException;
 import org.example.staffskillsauditor2.portfolio.application.mappers.PortfolioJpaToDTOMapper;
 import org.example.staffskillsauditor2.portfolio.application.mappers.PortfolioEntryJpaToDTOMapper;
-import org.example.staffskillsauditor2.skills.persistance.entities.PortfolioEntryJpa;
-import org.example.staffskillsauditor2.skills.persistance.entities.PortfolioJpa;
-import org.example.staffskillsauditor2.skills.persistance.repositories.PortfolioRepository;
-import org.example.staffskillsauditor2.skills.persistance.repositories.PortfolioEntryRepository;
+import org.example.staffskillsauditor2.portfolio.persistance.entities.PortfolioEntryJpa;
+import org.example.staffskillsauditor2.portfolio.persistance.entities.PortfolioJpa;
+import org.example.staffskillsauditor2.portfolio.persistance.repositories.PortfolioRepository;
+import org.example.staffskillsauditor2.portfolio.persistance.repositories.PortfolioEntryRepository;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 

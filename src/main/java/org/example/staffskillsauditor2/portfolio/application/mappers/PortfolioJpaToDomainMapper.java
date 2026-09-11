@@ -3,8 +3,9 @@ package org.example.staffskillsauditor2.portfolio.application.mappers;
 import org.example.staffskillsauditor2.common.domain.Identity;
 import org.example.staffskillsauditor2.portfolio.domain.PortfolioEntry;
 import org.example.staffskillsauditor2.portfolio.domain.SkillPortfolio;
-import org.example.staffskillsauditor2.skills.persistance.entities.PortfolioJpa;
-import org.example.staffskillsauditor2.skills.persistance.entities.PortfolioEntryJpa;
+import org.example.staffskillsauditor2.portfolio.domain.VerificationStatus;
+import org.example.staffskillsauditor2.portfolio.persistance.entities.PortfolioJpa;
+import org.example.staffskillsauditor2.portfolio.persistance.entities.PortfolioEntryJpa;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,12 +22,12 @@ public class PortfolioJpaToDomainMapper {
         if (jpa.getPortfolioEntry() != null) {
             for (PortfolioEntryJpa entryJpa : jpa.getPortfolioEntry()) {
                 entries.add(new PortfolioEntry(
-                        entryJpa.getId(),
+                        Identity.of(String.valueOf(entryJpa.getId())),
                         entryJpa.getSkill() != null ? entryJpa.getSkill().getId() : null,
                         entryJpa.getSkillLevel(),
                         entryJpa.getExpirationDate(),
                         entryJpa.getNotes(),
-                        entryJpa.getVerificationStatus(),
+                        VerificationStatus.valueOf(entryJpa.getVerificationStatus()),
                         entryJpa.getVerifiedBy(),
                         entryJpa.getVerifiedOn()
                 ));

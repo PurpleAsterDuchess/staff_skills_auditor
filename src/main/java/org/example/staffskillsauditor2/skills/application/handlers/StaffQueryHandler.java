@@ -2,7 +2,7 @@ package org.example.staffskillsauditor2.skills.application.handlers;
 
 import lombok.AllArgsConstructor;
 import org.example.staffskillsauditor2.skills.application.dto.StaffDTO;
-import org.example.staffskillsauditor2.skills.application.exceptions.StaffNotFoundException;
+import org.example.staffskillsauditor2.skills.domain.exceptions.StaffNotFoundException;
 import org.example.staffskillsauditor2.skills.application.mappers.StaffJpaToDTOMapper;
 import org.example.staffskillsauditor2.skills.persistance.entities.StaffJpa;
 import org.example.staffskillsauditor2.skills.persistance.repositories.StaffRepository;

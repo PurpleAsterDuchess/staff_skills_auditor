@@ -3,7 +3,7 @@ package org.example.staffskillsauditor2.skills.application.handlers;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.example.staffskillsauditor2.common.events.DomainEventManager;
-import org.example.staffskillsauditor2.skills.application.exceptions.SkillNotFoundException;
+import org.example.staffskillsauditor2.portfolio.domain.exceptions.SkillNotFoundException;
 import org.example.staffskillsauditor2.skills.application.mappers.SkillJpaToDomainMapper;
 import org.example.staffskillsauditor2.skills.domain.Skill;
 import org.example.staffskillsauditor2.skills.persistance.entities.SkillJpa;

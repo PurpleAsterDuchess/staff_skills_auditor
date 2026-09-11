@@ -1,4 +1,4 @@
-package org.example.staffskillsauditor2.skills.ui.controllers;
+package org.example.staffskillsauditor2.portfolio.ui.controllers;
 
 import lombok.AllArgsConstructor;
 import org.example.staffskillsauditor2.skills.ContextFacade;
