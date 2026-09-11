@@ -5,7 +5,7 @@ import org.example.staffskillsauditor2.common.domain.Identity;
 import org.example.staffskillsauditor2.common.events.DomainEventManager;
 import org.example.staffskillsauditor2.skills.domain.StaffMember;
 import org.example.staffskillsauditor2.skills.application.mappers.StaffDomainToJpaMapper;
-import org.example.staffskillsauditor2.skills.domain.events.UpdateStaffDetailsEvent;
+import org.example.staffskillsauditor2.skills.domain.events.StaffDetailsUpdatedEvent;
 import org.example.staffskillsauditor2.skills.persistance.entities.StaffJpa;
 import org.example.staffskillsauditor2.skills.persistance.repositories.StaffRepository;
 import org.example.staffskillsauditor2.skills.ui.commands.UpdateStaffDetailsCommand;
@@ -97,7 +97,7 @@ public class StaffCommandHandler {
         LOG.info("Staff member updated successfully.");
 
         if (departmentChanged) {
-            UpdateStaffDetailsEvent event = new UpdateStaffDetailsEvent(
+            StaffDetailsUpdatedEvent event = new StaffDetailsUpdatedEvent(
                     staffId,
                     oldDepartment,
                     staff.getDepartment()

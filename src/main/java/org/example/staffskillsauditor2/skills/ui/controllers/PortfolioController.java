@@ -2,8 +2,8 @@ package org.example.staffskillsauditor2.skills.ui.controllers;
 
 import lombok.AllArgsConstructor;
 import org.example.staffskillsauditor2.skills.ContextFacade;
-import org.example.staffskillsauditor2.skills.application.dto.PortfolioDTO;
-import org.example.staffskillsauditor2.skills.application.dto.PortfolioEntryDTO;
+import org.example.staffskillsauditor2.portfolio.application.dto.PortfolioDTO;
+import org.example.staffskillsauditor2.portfolio.application.dto.PortfolioEntryDTO;
 import org.example.staffskillsauditor2.skills.ui.commands.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;

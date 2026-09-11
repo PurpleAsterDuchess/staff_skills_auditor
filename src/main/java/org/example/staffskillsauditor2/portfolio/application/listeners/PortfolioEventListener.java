@@ -1,7 +1,7 @@
-package org.example.staffskillsauditor2.skills.application.listeners;
+package org.example.staffskillsauditor2.portfolio.application.listeners;
 
 import lombok.AllArgsConstructor;
-import org.example.staffskillsauditor2.skills.domain.events.CreateStaffMember;
+import org.example.staffskillsauditor2.skills.domain.events.StaffMemberCreatedEvent;
 import org.example.staffskillsauditor2.skills.persistance.entities.PortfolioJpa;
 import org.example.staffskillsauditor2.skills.persistance.repositories.PortfolioRepository;
 import org.slf4j.Logger;
@@ -18,7 +18,7 @@ public class PortfolioEventListener {
     private static final Logger LOG = LoggerFactory.getLogger(PortfolioEventListener.class);
 
     @ApplicationModuleListener
-    public void onStaffMemberCreated(CreateStaffMember event) {
+    public void onStaffMemberCreated(StaffMemberCreatedEvent event) {
         LOG.info("Received CreateStaffMemberEvent for staff ID: {}", event.getStaffId());
 
         boolean exists = portfolioRepository.findByStaffId(event.getStaffId()).isPresent();

@@ -1,7 +1,7 @@
 package org.example.staffskillsauditor2.skills.domain;
 
 import org.example.staffskillsauditor2.common.domain.Identity;
-import org.example.staffskillsauditor2.skills.application.exceptions.CannotBeBlankException;
+import org.example.staffskillsauditor2.skills.domain.exceptions.CannotBeBlankException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;

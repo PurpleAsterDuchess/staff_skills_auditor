@@ -1,7 +1,7 @@
-package org.example.staffskillsauditor2.skills.application.mappers;
+package org.example.staffskillsauditor2.portfolio.application.mappers;
 
-import org.example.staffskillsauditor2.skills.domain.PortfolioEntry;
-import org.example.staffskillsauditor2.skills.domain.SkillPortfolio;
+import org.example.staffskillsauditor2.portfolio.domain.PortfolioEntry;
+import org.example.staffskillsauditor2.portfolio.domain.SkillPortfolio;
 import org.example.staffskillsauditor2.skills.persistance.entities.PortfolioJpa;
 import org.example.staffskillsauditor2.skills.persistance.entities.PortfolioEntryJpa;
 import org.example.staffskillsauditor2.skills.persistance.entities.SkillJpa;

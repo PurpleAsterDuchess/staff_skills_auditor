@@ -1,4 +1,4 @@
-package org.example.staffskillsauditor2.skills.domain;
+package org.example.staffskillsauditor2.portfolio.domain;
 
 import org.example.staffskillsauditor2.common.domain.AggregateRoot;
 import org.example.staffskillsauditor2.common.domain.Identity;

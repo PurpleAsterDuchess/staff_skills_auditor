@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import org.example.staffskillsauditor2.skills.application.dto.PortfolioEntryDTO;
 
 import java.util.ArrayList;
 import java.util.List;

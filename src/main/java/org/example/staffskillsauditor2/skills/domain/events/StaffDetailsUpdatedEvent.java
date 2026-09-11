@@ -4,13 +4,13 @@ import lombok.Getter;
 import java.time.LocalDate;
 
 @Getter
-public class UpdateStaffDetailsEvent {
+public class StaffDetailsUpdatedEvent {
     private final String staffId;
     private final String oldDepartment;
     private final String newDepartment;
     private final LocalDate occurredOn;
 
-    public UpdateStaffDetailsEvent(String staffId, String oldDepartment, String newDepartment) {
+    public StaffDetailsUpdatedEvent(String staffId, String oldDepartment, String newDepartment) {
         this.staffId = staffId;
         this.oldDepartment = oldDepartment;
         this.newDepartment = newDepartment;

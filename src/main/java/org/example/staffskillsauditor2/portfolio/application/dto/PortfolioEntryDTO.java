@@ -1,4 +1,4 @@
-package org.example.staffskillsauditor2.skills.application.dto;
+package org.example.staffskillsauditor2.portfolio.application.dto;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;

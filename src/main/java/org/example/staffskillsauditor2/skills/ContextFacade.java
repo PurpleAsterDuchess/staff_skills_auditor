@@ -1,19 +1,18 @@
 package org.example.staffskillsauditor2.skills;
 
 import lombok.AllArgsConstructor;
-import org.example.staffskillsauditor2.skills.application.handlers.PortfolioCommandHandler;
-import org.example.staffskillsauditor2.skills.application.handlers.PortfolioQueryHandler;
+import org.example.staffskillsauditor2.portfolio.application.handlers.PortfolioCommandHandler;
+import org.example.staffskillsauditor2.portfolio.application.handlers.PortfolioQueryHandler;
 import org.example.staffskillsauditor2.skills.application.handlers.SkillQueryHandler;
 import org.example.staffskillsauditor2.skills.application.handlers.StaffCommandHandler;
 import org.example.staffskillsauditor2.skills.application.handlers.StaffQueryHandler;
-import org.example.staffskillsauditor2.skills.application.dto.PortfolioDTO;
-import org.example.staffskillsauditor2.skills.application.dto.PortfolioEntryDTO;
+import org.example.staffskillsauditor2.portfolio.application.dto.PortfolioDTO;
+import org.example.staffskillsauditor2.portfolio.application.dto.PortfolioEntryDTO;
 import org.example.staffskillsauditor2.skills.application.dto.SkillDTO;
 import org.example.staffskillsauditor2.skills.application.dto.StaffDTO;
 import org.example.staffskillsauditor2.skills.application.handlers.SkillCommandHandler;
 import org.example.staffskillsauditor2.skills.ui.commands.RegisterStaffMemberCommand;
 import org.example.staffskillsauditor2.skills.ui.commands.UpdateStaffDetailsCommand;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

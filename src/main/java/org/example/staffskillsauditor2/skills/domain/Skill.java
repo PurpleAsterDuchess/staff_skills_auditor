@@ -2,7 +2,7 @@ package org.example.staffskillsauditor2.skills.domain;
 
 import org.example.staffskillsauditor2.common.domain.AggregateRoot;
 import org.example.staffskillsauditor2.common.domain.Identity;
-import org.example.staffskillsauditor2.skills.application.exceptions.CannotBeBlankException;
+import org.example.staffskillsauditor2.skills.domain.exceptions.CannotBeBlankException;
 
 import java.util.Objects;
 

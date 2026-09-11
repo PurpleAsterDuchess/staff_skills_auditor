@@ -1,12 +1,12 @@
-package org.example.staffskillsauditor2.skills.application.handlers;
+package org.example.staffskillsauditor2.portfolio.application.handlers;
 
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.example.staffskillsauditor2.common.events.DomainEventManager;
-import org.example.staffskillsauditor2.skills.application.exceptions.PortfolioNotFoundException;
-import org.example.staffskillsauditor2.skills.application.mappers.PortfolioJpaToDomainMapper;
-import org.example.staffskillsauditor2.skills.application.mappers.PortfolioToJpaMapper;
-import org.example.staffskillsauditor2.skills.domain.SkillPortfolio;
+import org.example.staffskillsauditor2.portfolio.application.exceptions.PortfolioNotFoundException;
+import org.example.staffskillsauditor2.portfolio.application.mappers.PortfolioJpaToDomainMapper;
+import org.example.staffskillsauditor2.portfolio.application.mappers.PortfolioToJpaMapper;
+import org.example.staffskillsauditor2.portfolio.domain.SkillPortfolio;
 import org.example.staffskillsauditor2.skills.persistance.entities.PortfolioJpa;
 import org.example.staffskillsauditor2.skills.persistance.repositories.PortfolioRepository;
 import org.springframework.stereotype.Service;

@@ -2,7 +2,7 @@ package org.example.staffskillsauditor2.skills.domain;
 
 import org.example.staffskillsauditor2.common.domain.AggregateRoot;
 import org.example.staffskillsauditor2.common.domain.Identity;
-import org.example.staffskillsauditor2.skills.domain.events.CreateStaffMember;
+import org.example.staffskillsauditor2.skills.domain.events.StaffMemberCreatedEvent;
 import java.time.LocalDate;
 
 public class StaffMember extends AggregateRoot<StaffMember> {
@@ -29,7 +29,7 @@ public class StaffMember extends AggregateRoot<StaffMember> {
         LocalDate hireDate = LocalDate.now();
         StaffMember staff = new StaffMember(id, firstName, surname, email, hireDate, department);
 
-        staff.addDomainEvent(new CreateStaffMember(id.id(), firstName, surname, email, hireDate, department));
+        staff.addDomainEvent(new StaffMemberCreatedEvent(id.id(), firstName, surname, email, hireDate, department));
         return staff;
     }
 
