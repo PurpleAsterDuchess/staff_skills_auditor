@@ -1,10 +1,10 @@
-package org.example.staffskillsauditor2.skills.ui.commands;
+package org.example.staffskillsauditor2.portfolio.ui.commands;
 
-public record EditSkillCommand(
+public record EditPortfolioSkillCommand(
         int skillLevel,
         String notes
 ) {
-    public EditSkillCommand {
+    public EditPortfolioSkillCommand {
         if (skillLevel < 1 || skillLevel > 5) {
             throw new IllegalArgumentException("Skill level must be between 1 and 5");
         }

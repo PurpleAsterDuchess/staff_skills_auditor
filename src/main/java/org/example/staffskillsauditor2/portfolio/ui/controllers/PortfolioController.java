@@ -1,10 +1,10 @@
 package org.example.staffskillsauditor2.portfolio.ui.controllers;
 
 import lombok.AllArgsConstructor;
+import org.example.staffskillsauditor2.portfolio.ui.commands.*;
 import org.example.staffskillsauditor2.skills.ContextFacade;
 import org.example.staffskillsauditor2.portfolio.application.dto.PortfolioDTO;
 import org.example.staffskillsauditor2.portfolio.application.dto.PortfolioEntryDTO;
-import org.example.staffskillsauditor2.skills.ui.commands.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -40,7 +40,7 @@ public class PortfolioController {
     public void editSkill(
             @PathVariable String staff_id,
             @PathVariable String skill_id,
-            @RequestBody EditSkillCommand command
+            @RequestBody EditPortfolioSkillCommand command
     ) {
         facade.editSkillInPortfolio(staff_id, skill_id, command.skillLevel(), command.notes());
     }
@@ -73,7 +73,7 @@ public class PortfolioController {
     public void rejectSkill(
             @PathVariable String portfolio_id,
             @PathVariable String skill_id,
-            @RequestBody RejectSkillCommand command
+            @RequestBody RejectPortfolioSkillCommand command
     ) {
         facade.rejectSkillInPortfolio(portfolio_id, skill_id, command.rejectedBy());
     }
