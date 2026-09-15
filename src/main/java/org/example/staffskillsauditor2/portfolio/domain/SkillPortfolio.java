@@ -4,6 +4,9 @@ import org.example.staffskillsauditor2.common.domain.AggregateRoot;
 import org.example.staffskillsauditor2.common.domain.Identity;
 import org.example.staffskillsauditor2.portfolio.domain.exceptions.SkillNotFoundException;
 import org.example.staffskillsauditor2.portfolio.domain.events.SkillAllocatedEvent;
+import org.example.staffskillsauditor2.portfolio.domain.events.SkillRejectedEvent;
+import org.example.staffskillsauditor2.portfolio.domain.events.SkillUnverifiedEvent;
+import org.example.staffskillsauditor2.portfolio.domain.events.SkillVerifiedEvent;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -41,10 +44,7 @@ public class SkillPortfolio extends AggregateRoot<SkillPortfolio> {
     public String staffId() { return staffId; }
     public List<PortfolioEntry> entries() { return Collections.unmodifiableList(entries); }
     public void editSkill(String skillId, int level, String notes) {
-        PortfolioEntry existingEntry = entries.stream()
-                .filter(e -> e.skillId().equals(skillId))
-                .findFirst()
-                .orElseThrow(() -> new SkillNotFoundException(skillId));
+        PortfolioEntry existingEntry = findEntry(skillId);
 
         existingEntry.edit(level, notes);
 
@@ -60,29 +60,61 @@ public class SkillPortfolio extends AggregateRoot<SkillPortfolio> {
     }
 
     public void verifySkill(String skillId, String verifiedBy) {
-        PortfolioEntry existingEntry = entries.stream()
-                .filter(e -> e.skillId().equals(skillId))
-                .findFirst()
-                .orElseThrow(() -> new SkillNotFoundException(skillId));
+        PortfolioEntry existingEntry = findEntry(skillId);
+        LocalDateTime verifiedOn = LocalDateTime.now();
 
-        existingEntry.verify(verifiedBy, LocalDateTime.now());
+        existingEntry.verify(verifiedBy, verifiedOn);
+
+        this.addDomainEvent(
+                new SkillVerifiedEvent(
+                        this.id().id(),
+                        staffId,
+                        skillId,
+                        verifiedBy,
+                        verifiedOn
+                )
+        );
     }
 
     public void unverifySkill(String skillId) {
-        PortfolioEntry existingEntry = entries.stream()
-                .filter(e -> e.skillId().equals(skillId))
-                .findFirst()
-                .orElseThrow(() -> new SkillNotFoundException(skillId));
+        PortfolioEntry existingEntry = findEntry(skillId);
 
         existingEntry.unverify();
+
+        this.addDomainEvent(
+                new SkillUnverifiedEvent(
+                        this.id().id(),
+                        staffId,
+                        skillId
+                )
+        );
     }
 
     public void rejectSkill(String skillId, String rejectedBy) {
-        PortfolioEntry existingEntry = entries.stream()
+        PortfolioEntry existingEntry = findEntry(skillId);
+
+        LocalDateTime rejectedOn = LocalDateTime.now();
+
+        existingEntry.reject(
+                rejectedBy,
+                rejectedOn
+        );
+
+        this.addDomainEvent(
+                new SkillRejectedEvent(
+                        this.id().id(),
+                        staffId,
+                        skillId,
+                        rejectedBy,
+                        rejectedOn
+                )
+        );
+    }
+
+    private PortfolioEntry findEntry(String skillId) {
+        return entries.stream()
                 .filter(e -> e.skillId().equals(skillId))
                 .findFirst()
                 .orElseThrow(() -> new SkillNotFoundException(skillId));
-
-        existingEntry.reject(rejectedBy, LocalDateTime.now());
     }
 }
