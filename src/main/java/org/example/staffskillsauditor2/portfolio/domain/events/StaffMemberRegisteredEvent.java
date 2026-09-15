@@ -1,4 +1,4 @@
-package org.example.staffskillsauditor2.skills.domain.events;
+package org.example.staffskillsauditor2.portfolio.domain.events;
 
 import lombok.Getter;
 import org.example.staffskillsauditor2.common.events.RemoteEvent;
@@ -37,15 +37,13 @@ public class StaffMemberRegisteredEvent implements RemoteEvent {
         return new StaffMemberRegisteredEvent(newId, this.occurredOn, this.staffId, this.firstName, this.surname, this.email);
     }
 
-    // Solves the compiler error!
     @Override
     public String routingKey() {
-        return "staffRegisteredKey"; // Matches your rabbitmq.outbox.bindings configuration
+        return "staffRegisteredKey";
     }
 
-    // Implemented in case RemoteEvent also defines an exchange method:
     @Override
     public String exchange() {
-        return "staff-management"; // Matches your rabbitmq.outbox.bindings configuration
+        return "staff-management";
     }
 }

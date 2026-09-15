@@ -1,8 +1,8 @@
-package org.example.staffskillsauditor2.skills.application.listeners;
+package org.example.staffskillsauditor2.portfolio.application.listeners;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.example.staffskillsauditor2.skills.domain.events.StaffMemberRegisteredEvent;
+import org.example.staffskillsauditor2.portfolio.domain.events.StaffMemberRegisteredEvent;
 import org.example.staffskillsauditor2.portfolio.persistance.entities.PortfolioJpa;
 import org.example.staffskillsauditor2.portfolio.persistance.repositories.PortfolioRepository;
 import org.springframework.amqp.rabbit.annotation.RabbitHandler;
