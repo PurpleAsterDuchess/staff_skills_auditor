@@ -1,5 +1,7 @@
 package org.example.staffskillsauditor2.skills.ui.commands;
 
+import org.example.staffskillsauditor2.skills.domain.exceptions.CannotBeBlankException;
+
 public record UpdateSkillCommand(
         String name,
         String description,
@@ -7,10 +9,10 @@ public record UpdateSkillCommand(
 ) {
     public UpdateSkillCommand {
         if (name != null && name.isBlank()) {
-            throw new IllegalArgumentException("Skill name cannot be blank if provided");
+            throw new CannotBeBlankException("Skill name cannot be blank");
         }
         if (category != null && category.isBlank()) {
-            throw new IllegalArgumentException("Skill category cannot be blank if provided");
+            throw new CannotBeBlankException("Skill category cannot be blank");
         }
     }
 }
