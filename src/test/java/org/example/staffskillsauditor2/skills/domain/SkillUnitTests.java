@@ -35,8 +35,8 @@ class SkillUnitTests {
     class CreationTests {
 
         @Test
-        @DisplayName("Given valid attributes, when createNewSkill is called, then Skill is instantiated in active state")
-        void test01_validSkillCreation() {
+        @DisplayName("Should instantiate skill to an active state when createNewSkill is called with valid attributes")
+        void validSkillCreation() {
             // Act
             Skill skill = createValidSkill();
 
@@ -50,8 +50,8 @@ class SkillUnitTests {
         }
 
         @Test
-        @DisplayName("Given blank skill name, when createNewSkill is called, then throw CannotBeBlankException")
-        void test02_blankNameThrowsException() {
+        @DisplayName("Should throw CannotBeBlankException when createNewSkill is called with a blank skill name")
+        void blankNameThrowsException() {
             // Act & Assert
             Throwable exception = assertThrows(CannotBeBlankException.class, () ->
                     Skill.createNewSkill(Identity.of(validId), "   ", validDescription, validCategory)
@@ -60,8 +60,8 @@ class SkillUnitTests {
         }
 
         @Test
-        @DisplayName("Given blank category, when createNewSkill is called, then throw CannotBeBlankException")
-        void test03_blankCategoryThrowsException() {
+        @DisplayName("Should throw CannotBeBlankException when createNewSkill is called with a blank category")
+        void blankCategoryThrowsException() {
             // Act & Assert
             Throwable exception = assertThrows(CannotBeBlankException.class, () ->
                     Skill.createNewSkill(Identity.of(validId), validName, validDescription, "")
@@ -75,8 +75,8 @@ class SkillUnitTests {
     class BehaviorTests {
 
         @Test
-        @DisplayName("Given valid new details, when editSkill is called, then skill details are updated")
-        void test04_editSkillUpdatesDetails() {
+        @DisplayName("Should update skill details when editSkill is called with valid new details")
+        void editSkillUpdatesDetails() {
             // Arrange
             Skill skill = createValidSkill();
             String newName = "Spring Boot 3 Advanced";
@@ -93,8 +93,8 @@ class SkillUnitTests {
         }
 
         @Test
-        @DisplayName("Given active skill, when deactivateSkill is called, then isActive becomes false")
-        void test05_deactivateSkillChangesStatus() {
+        @DisplayName("Should make isActive false when deactivateSkill is given an active skill")
+        void deactivateSkillChangesStatus() {
             // Arrange
             Skill skill = createValidSkill();
             assertTrue(skill.isActive());
