@@ -1,9 +1,10 @@
 package org.example.staffskillsauditor2.skills.ui.controllers;
 
 import org.example.staffskillsauditor2.skills.ContextFacade;
-import org.example.staffskillsauditor2.skills.application.dto.StaffDTO;
-import org.example.staffskillsauditor2.skills.ui.commands.RegisterStaffMemberCommand;
-import org.example.staffskillsauditor2.skills.ui.commands.UpdateStaffDetailsCommand;
+import org.example.staffskillsauditor2.staff.application.dto.StaffDTO;
+import org.example.staffskillsauditor2.staff.ui.commands.RegisterStaffMemberCommand;
+import org.example.staffskillsauditor2.staff.ui.commands.UpdateStaffDetailsCommand;
+import org.example.staffskillsauditor2.staff.ui.controllers.StaffController;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

@@ -1,4 +1,4 @@
-package org.example.staffskillsauditor2.skills.persistance.entities;
+package org.example.staffskillsauditor2.staff.persistance.entities;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

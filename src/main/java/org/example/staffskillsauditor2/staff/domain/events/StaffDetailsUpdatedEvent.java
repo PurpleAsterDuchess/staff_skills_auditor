@@ -1,4 +1,4 @@
-package org.example.staffskillsauditor2.skills.domain.events;
+package org.example.staffskillsauditor2.staff.domain.events;
 
 import lombok.Getter;
 import java.time.LocalDate;

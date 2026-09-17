@@ -1,7 +1,7 @@
-package org.example.staffskillsauditor2.skills.application.mappers;
+package org.example.staffskillsauditor2.staff.application.mappers;
 
-import org.example.staffskillsauditor2.skills.application.dto.StaffDTO;
-import org.example.staffskillsauditor2.skills.persistance.entities.StaffJpa;
+import org.example.staffskillsauditor2.staff.application.dto.StaffDTO;
+import org.example.staffskillsauditor2.staff.persistance.entities.StaffJpa;
 
 import java.util.Objects;
 

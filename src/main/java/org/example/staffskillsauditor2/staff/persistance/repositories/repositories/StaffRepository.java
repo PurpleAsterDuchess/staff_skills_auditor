@@ -1,6 +1,6 @@
-package org.example.staffskillsauditor2.skills.persistance.repositories;
+package org.example.staffskillsauditor2.staff.persistance.repositories.repositories;
 
-import org.example.staffskillsauditor2.skills.persistance.entities.StaffJpa;
+import org.example.staffskillsauditor2.staff.persistance.entities.StaffJpa;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

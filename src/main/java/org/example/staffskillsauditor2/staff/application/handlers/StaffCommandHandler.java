@@ -1,14 +1,14 @@
-package org.example.staffskillsauditor2.skills.application.handlers;
+package org.example.staffskillsauditor2.staff.application.handlers;
 
 import lombok.AllArgsConstructor;
 import org.example.staffskillsauditor2.common.domain.Identity;
 import org.example.staffskillsauditor2.common.events.DomainEventManager;
-import org.example.staffskillsauditor2.skills.domain.StaffMember;
-import org.example.staffskillsauditor2.skills.application.mappers.StaffDomainToJpaMapper;
-import org.example.staffskillsauditor2.skills.domain.events.StaffDetailsUpdatedEvent;
-import org.example.staffskillsauditor2.skills.persistance.entities.StaffJpa;
-import org.example.staffskillsauditor2.skills.persistance.repositories.StaffRepository;
-import org.example.staffskillsauditor2.skills.ui.commands.UpdateStaffDetailsCommand;
+import org.example.staffskillsauditor2.staff.domain.StaffMember;
+import org.example.staffskillsauditor2.staff.application.mappers.StaffDomainToJpaMapper;
+import org.example.staffskillsauditor2.staff.domain.events.StaffDetailsUpdatedEvent;
+import org.example.staffskillsauditor2.staff.persistance.entities.StaffJpa;
+import org.example.staffskillsauditor2.staff.persistance.repositories.repositories.StaffRepository;
+import org.example.staffskillsauditor2.staff.ui.commands.UpdateStaffDetailsCommand;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationEventPublisher;

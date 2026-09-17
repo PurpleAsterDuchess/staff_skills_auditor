@@ -1,8 +1,8 @@
-package org.example.staffskillsauditor2.skills.domain;
+package org.example.staffskillsauditor2.staff.domain;
 
 import org.example.staffskillsauditor2.common.domain.AggregateRoot;
 import org.example.staffskillsauditor2.common.domain.Identity;
-import org.example.staffskillsauditor2.portfolio.domain.events.StaffMemberCreatedEvent;
+import org.example.staffskillsauditor2.staff.domain.events.StaffMemberCreatedEvent;
 import java.time.LocalDate;
 
 public class StaffMember extends AggregateRoot<StaffMember> {

@@ -1,5 +1,6 @@
 package org.example.staffskillsauditor2.skills.ui.commands;
 
+import org.example.staffskillsauditor2.staff.ui.commands.RegisterStaffMemberCommand;
 import org.junit.jupiter.api.Test;
 
 

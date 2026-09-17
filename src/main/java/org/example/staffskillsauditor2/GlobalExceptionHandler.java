@@ -1,7 +1,7 @@
 package org.example.staffskillsauditor2;
 
 import org.example.staffskillsauditor2.portfolio.domain.exceptions.SkillNotFoundException;
-import org.example.staffskillsauditor2.skills.domain.exceptions.StaffNotFoundException;
+import org.example.staffskillsauditor2.staff.domain.exceptions.StaffNotFoundException;
 
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.ConstraintViolationException;

@@ -1,4 +1,4 @@
-package org.example.staffskillsauditor2.skills.ui.commands;
+package org.example.staffskillsauditor2.staff.ui.commands;
 
 public record UpdateStaffDetailsCommand(
         String firstName,

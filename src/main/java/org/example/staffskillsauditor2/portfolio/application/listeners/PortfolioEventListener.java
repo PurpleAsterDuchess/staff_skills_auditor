@@ -1,7 +1,7 @@
 package org.example.staffskillsauditor2.portfolio.application.listeners;
 
 import lombok.AllArgsConstructor;
-import org.example.staffskillsauditor2.portfolio.domain.events.StaffMemberCreatedEvent;
+import org.example.staffskillsauditor2.staff.domain.events.StaffMemberCreatedEvent;
 import org.example.staffskillsauditor2.portfolio.persistance.entities.PortfolioJpa;
 import org.example.staffskillsauditor2.portfolio.persistance.repositories.PortfolioRepository;
 import org.slf4j.Logger;
