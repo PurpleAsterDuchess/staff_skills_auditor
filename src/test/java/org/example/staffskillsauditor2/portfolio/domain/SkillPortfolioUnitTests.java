@@ -10,7 +10,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -77,7 +76,7 @@ class SkillPortfolioUnitTests {
             assertEquals(1, portfolio.entries().size());
             assertEquals(
                     SKILL_ID,
-                    portfolio.entries().get(0).skillId()
+                    portfolio.entries().getFirst().skillId()
             );
         }
 
@@ -113,7 +112,7 @@ class SkillPortfolioUnitTests {
 
             assertEquals(1, portfolio.entries().size());
 
-            PortfolioEntry entry = portfolio.entries().get(0);
+            PortfolioEntry entry = portfolio.entries().getFirst();
 
             assertEquals(SKILL_ID, entry.skillId());
             assertEquals(3, entry.skillLevel());
@@ -142,7 +141,7 @@ class SkillPortfolioUnitTests {
 
             assertEquals(
                     1,
-                    portfolio.entries().get(0).skillLevel()
+                    portfolio.entries().getFirst().skillLevel()
             );
         }
 
@@ -161,7 +160,7 @@ class SkillPortfolioUnitTests {
 
             assertEquals(
                     5,
-                    portfolio.entries().get(0).skillLevel()
+                    portfolio.entries().getFirst().skillLevel()
             );
         }
 
@@ -235,7 +234,7 @@ class SkillPortfolioUnitTests {
             assertEquals(1, portfolio.entries().size());
             assertEquals(
                     3,
-                    portfolio.entries().get(0).skillLevel()
+                    portfolio.entries().getFirst().skillLevel()
             );
         }
 
@@ -469,7 +468,7 @@ class SkillPortfolioUnitTests {
             portfolio.unverifySkill(SKILL_ID);
 
             PortfolioEntry entry =
-                    portfolio.entries().get(0);
+                    portfolio.entries().getFirst();
 
             assertEquals(
                     VerificationStatus.PENDING,
@@ -641,5 +640,22 @@ class SkillPortfolioUnitTests {
 
             assertEquals(1, portfolio.entries().size());
         }
+    }
+
+    @Test
+    @DisplayName("Should not create event when editing missing skill fails")
+    void failedEditShouldNotCreateEvent() {
+        SkillPortfolio portfolio = createEmptyPortfolio();
+
+        assertThrows(
+                SkillNotFoundException.class,
+                () -> portfolio.editSkill(
+                        "UNKNOWN",
+                        4,
+                        "Updated"
+                )
+        );
+
+        assertTrue(portfolio.domainEvents.isEmpty());
     }
 }

@@ -91,7 +91,6 @@ class SkillUnitTests {
             assertEquals(newDesc, skill.description());
             assertEquals(newCat, skill.category());
         }
-
         @Test
         @DisplayName("Should make isActive false when deactivateSkill is given an active skill")
         void deactivateSkillChangesStatus() {
@@ -105,6 +104,20 @@ class SkillUnitTests {
             // Assert
             assertFalse(skill.isActive());
         }
+    }
+
+    @Test
+    @DisplayName("Should make isActive true when activateSkill is given an active skill")
+    void activateSkillChangesStatus() {
+        // Arrange
+        Skill skill = createValidSkill();
+        assertTrue(skill.isActive());
+
+        // Act
+        skill.activateSkill();
+
+        // Assert
+        assertTrue(skill.isActive());
     }
 }
 
