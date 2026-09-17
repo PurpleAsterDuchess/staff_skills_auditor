@@ -18,7 +18,7 @@ class PortfolioDTOUnitTests {
 
         PortfolioDTO dto = new PortfolioDTO(
                 "PORTFOLIO001",
-                "STAF001",
+                "STAFF001",
                 List.of(entry)
         );
 
@@ -153,7 +153,7 @@ class PortfolioDTOUnitTests {
         PortfolioEntryDTO entry = createEntry();
 
         PortfolioDTO dto = new PortfolioDTO(
-                "PORTFOLIO02",
+                "PORTFOLIO002",
                 "STAFF002",
                 List.of(entry)
         );
