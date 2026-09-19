@@ -79,7 +79,15 @@ public class StaffCommandHandler {
             staff.setEmail(command.email().trim());
         }
         if (command.lineManagerId() != null) {
-            staff.setLineManagerId(command.lineManagerId().trim());
+            String lineManagerId = command.lineManagerId().trim();
+
+            if (!staffRepository.existsById(lineManagerId)) {
+                throw new IllegalArgumentException(
+                        "Line manager not found with ID: " + lineManagerId
+                );
+            }
+
+            staff.setLineManagerId(lineManagerId);
         }
         if (command.department() != null) {
             String newDept = command.department().trim();

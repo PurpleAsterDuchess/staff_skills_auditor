@@ -39,7 +39,7 @@ public class PortfolioController {
         );
     }
 
-    @PreAuthorize("hasRole('MANAGER') or @authorisationService.canEditPortfolio(authentication, #staff_id)")
+    @PreAuthorize("@authorisationService.canEditPortfolio(authentication, #staff_id)")
     @PutMapping("/{staff_id}/skills/{skill_id}")
     @ResponseStatus(HttpStatus.OK)
     public void editSkill(
