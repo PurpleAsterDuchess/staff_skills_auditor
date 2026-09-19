@@ -4,6 +4,7 @@ public record UpdateStaffDetailsCommand(
         String firstName,
         String surname,
         String email,
+        String lineManagerId,
         String department,
         String roleName,
         String jobLevel,
@@ -19,6 +20,9 @@ public record UpdateStaffDetailsCommand(
         }
         if (email != null && email.trim().isBlank()) {
             throw new IllegalArgumentException("Email cannot be blank if provided");
+        }
+        if (lineManagerId != null && lineManagerId.trim().isBlank()) {
+            throw new IllegalArgumentException("Line Manager cannot be blank if provided");
         }
         if (department != null && department.trim().isBlank()) {
             throw new IllegalArgumentException("Department cannot be blank if provided");

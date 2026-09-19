@@ -24,17 +24,22 @@ public class PortfolioController {
         return facade.findPortfolioById(portfolio_id);
     }
 
-    @PreAuthorize("hasAnyRole('STAFF' )")
+    @PreAuthorize("@authorisationService.canEditPortfolio(authentication, #staff_id)")
     @PostMapping("/{staff_id}/skills")
     @ResponseStatus(HttpStatus.CREATED)
     public void allocateSkill(
             @PathVariable String staff_id,
             @RequestBody AllocateSkillCommand command
     ) {
-        facade.allocateSkillToPortfolio(staff_id, command.skillId(), command.skillLevel(), command.notes());
+        facade.allocateSkillToPortfolio(
+                staff_id,
+                command.skillId(),
+                command.skillLevel(),
+                command.notes()
+        );
     }
 
-    @PreAuthorize("hasAnyRole('STAFF', 'MANAGER')")
+    @PreAuthorize("hasRole('MANAGER') or @authorisationService.canEditPortfolio(authentication, #staff_id)")
     @PutMapping("/{staff_id}/skills/{skill_id}")
     @ResponseStatus(HttpStatus.OK)
     public void editSkill(

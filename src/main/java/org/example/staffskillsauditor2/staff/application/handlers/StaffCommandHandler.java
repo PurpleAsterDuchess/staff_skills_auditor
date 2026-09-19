@@ -78,6 +78,9 @@ public class StaffCommandHandler {
         if (command.email() != null) {
             staff.setEmail(command.email().trim());
         }
+        if (command.lineManagerId() != null) {
+            staff.setLineManagerId(command.lineManagerId().trim());
+        }
         if (command.department() != null) {
             String newDept = command.department().trim();
             if (!newDept.equalsIgnoreCase(oldDepartment != null ? oldDepartment.trim() : "")) {
