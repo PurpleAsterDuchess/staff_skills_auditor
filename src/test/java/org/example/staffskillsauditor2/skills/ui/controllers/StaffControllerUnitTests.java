@@ -156,21 +156,6 @@ class StaffControllerUnitTests {
         verifyNoMoreInteractions(facade);
     }
 
-//    @Test
-//    @DisplayName("Should pass the same registration command to the facade")
-//    void shouldPassSameRegistrationCommand() {
-//        RegisterStaffMemberCommand command = mock(
-//                RegisterStaffMemberCommand.class
-//        );
-//
-//        when(facade.registerStaffMember(command))
-//                .thenReturn("STAFF002");
-//
-//        controller.registerStaffMember(command);
-//
-//        verify(facade).registerStaffMember(same(command));
-//    }
-
     @Test
     @DisplayName("Should handle null staff ID")
     void shouldHandleNullStaffId() {
