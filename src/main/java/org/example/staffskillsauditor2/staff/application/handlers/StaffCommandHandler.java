@@ -3,6 +3,8 @@ package org.example.staffskillsauditor2.staff.application.handlers;
 import lombok.AllArgsConstructor;
 import org.example.staffskillsauditor2.common.domain.Identity;
 import org.example.staffskillsauditor2.common.events.DomainEventManager;
+import org.example.staffskillsauditor2.staff.application.dto.StaffDTO;
+import org.example.staffskillsauditor2.staff.application.mappers.StaffJpaToDTOMapper;
 import org.example.staffskillsauditor2.staff.domain.StaffMember;
 import org.example.staffskillsauditor2.staff.application.mappers.StaffDomainToJpaMapper;
 import org.example.staffskillsauditor2.staff.domain.events.StaffDetailsUpdatedEvent;
@@ -27,8 +29,8 @@ public class StaffCommandHandler {
 
 
     @Transactional
-    public String registerStaffMember(String firstName, String surname, String email, String department,
-                                      String roleName, String jobLevel, String employmentType, String employmentStatus) {
+    public StaffDTO registerStaffMember(String firstName, String surname, String email, String department,
+                                        String roleName, String jobLevel, String employmentType, String employmentStatus) {
 
         Identity<StaffMember> staffId = Identity.generateId();
 
@@ -43,14 +45,18 @@ public class StaffCommandHandler {
         jpaEntity.setEmploymentType(employmentType);
         jpaEntity.setEmploymentStatus(employmentStatus);
 
-        staffRepository.save(jpaEntity);
+        StaffJpa savedJpa = staffRepository.save(jpaEntity);
 
         if (newStaff.domainEventsExist()) {
-            domainEventManager.manageDomainEvents(this.getClass().getSimpleName(), newStaff.listOfDomainEvents());
+            domainEventManager.manageDomainEvents(
+                    this.getClass().getSimpleName(),
+                    newStaff.listOfDomainEvents()
+            );
             newStaff.clearDomainEvents();
         }
 
-        return staffId.id();
+        LOG.info("Staff member registered successfully with ID: {}", staffId.id());
+        return StaffJpaToDTOMapper.toStaffDTO(savedJpa);
     }
 
     @Transactional

@@ -20,12 +20,15 @@ public class FirebaseJwtAuthenticationConverter
     @Override
     public AbstractAuthenticationToken convert(Jwt jwt) {
         String roleClaim = Objects.requireNonNull(jwt.getClaimAsString("role"));
+        String staffId = Objects.requireNonNull(jwt.getClaimAsString("staffId"));
 
         Collection<GrantedAuthority> authorities = List.of(
                 new SimpleGrantedAuthority(roleClaim));
 
-        return new JwtAuthenticationToken(jwt,
-                                        authorities,
-                                        Objects.requireNonNull(jwt.getSubject()));
+        return new JwtAuthenticationToken(
+                jwt,
+                authorities,
+                staffId
+        );
     }
 }

@@ -18,14 +18,16 @@ public class StaffController {
 
     @GetMapping("/{staff_id}")
     @ResponseStatus(HttpStatus.OK)
-    public StaffDTO getStaffById(@PathVariable String staff_id) {
+    public StaffDTO getStaffById(
+            @PathVariable String staff_id) {
         return facade.findStaffById(staff_id);
     }
 
     @PreAuthorize("hasAnyRole('ADMIN')")
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public String registerStaffMember(@RequestBody RegisterStaffMemberCommand command) {
+    public StaffDTO registerStaffMember(
+            @RequestBody RegisterStaffMemberCommand command) {
         return facade.registerStaffMember(command);
     }
 

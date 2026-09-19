@@ -69,7 +69,8 @@ public class ContextFacade {
     }
 
 //    @PreAuthorize("hasAnyRole('ADMIN', 'MANAGER')")
-    public String registerStaffMember(RegisterStaffMemberCommand command) {
+    public StaffDTO registerStaffMember(RegisterStaffMemberCommand command) {
+
         return staffCommandHandler.registerStaffMember(
                 command.firstName(),
                 command.surname(),
