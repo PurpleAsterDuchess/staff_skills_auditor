@@ -75,39 +75,71 @@ class StaffControllerUnitTests {
         verify(facade).findStaffById("STAFF002");
     }
 
-//    @Test
-//    @DisplayName("Should register a staff member")
-//    void shouldRegisterStaffMember() {
-//        RegisterStaffMemberCommand command = mock(
-//                RegisterStaffMemberCommand.class
-//        );
-//
-//        when(facade.registerStaffMember(command))
-//                .thenReturn("STAFF002");
-//
-//        StaffDTO result = controller.registerStaffMember(command);
-//
-//        assertEquals("STAFF002", result);
-//
-//        verify(facade).registerStaffMember(command);
-//    }
-//
-//    @Test
-//    @DisplayName("Should return registered staff member ID")
-//    void shouldReturnRegisteredStaffMemberId() {
-//        RegisterStaffMemberCommand command = mock(
-//                RegisterStaffMemberCommand.class
-//        );
-//
-//        when(facade.registerStaffMember(command))
-//                .thenReturn("STAFF002");
-//
-//        StaffDTO result = controller.registerStaffMember(command);
-//
-//        assertNotNull(result);
-//        assertEquals("STAFF002", result);
-//    }
+    @Test
+    @DisplayName("Should register a staff member")
+    void shouldRegisterStaffMember() {
+        RegisterStaffMemberCommand command = mock(RegisterStaffMemberCommand.class);
 
+        StaffDTO expected = new StaffDTO(
+                "STAFF002",
+                "Jane",
+                "Doe",
+                "jane.doe@example.com",
+                null,
+                "IT",
+                null,
+                "MANAGER",
+                null,
+                "SENIOR",
+                "Full-time",
+                "ACTIVE"
+        );
+
+        when(facade.registerStaffMember(command))
+                .thenReturn(expected);
+
+        StaffDTO result = controller.registerStaffMember(command);
+
+        assertNotNull(result);
+        assertEquals("STAFF002", result.id());
+        assertEquals("Jane", result.firstName());
+        assertEquals("Doe", result.surname());
+        assertEquals("jane.doe@example.com", result.email());
+        assertEquals("MANAGER", result.roleName());
+
+        verify(facade).registerStaffMember(command);
+    }
+
+    @Test
+    @DisplayName("Should return registered staff member")
+    void shouldReturnRegisteredStaffMember() {
+        RegisterStaffMemberCommand command = mock(RegisterStaffMemberCommand.class);
+
+        StaffDTO expected = new StaffDTO(
+                "STAFF002",
+                "Jane",
+                "Doe",
+                "jane.doe@example.com",
+                null,
+                "IT",
+                null,
+                "MANAGER",
+                null,
+                "SENIOR",
+                "Full-time",
+                "ACTIVE"
+        );
+
+        when(facade.registerStaffMember(command))
+                .thenReturn(expected);
+
+        StaffDTO result = controller.registerStaffMember(command);
+
+        assertEquals(expected, result);
+        assertEquals("STAFF002", result.id());
+
+        verify(facade).registerStaffMember(command);
+    }
     @Test
     @DisplayName("Should update staff details")
     void shouldUpdateStaffDetails() {
