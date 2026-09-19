@@ -22,6 +22,7 @@ public class StaffController {
         return facade.findStaffById(staff_id);
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public String registerStaffMember(@RequestBody RegisterStaffMemberCommand command) {
