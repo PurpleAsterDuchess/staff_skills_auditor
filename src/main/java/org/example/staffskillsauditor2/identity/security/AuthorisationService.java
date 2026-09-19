@@ -21,7 +21,7 @@ public class AuthorisationService {
             Authentication authentication,
             String staffId
     ) {
-        log.info("given staff id: {} ", staffId);
+        log.info("Given staff id: {} ", staffId);
         if (authentication == null || !authentication.isAuthenticated()) {
             return false;
         }
@@ -43,7 +43,7 @@ public class AuthorisationService {
                 return false;
             }
 
-            log.info("given firebase email: {} ", firebaseEmail);
+            log.info("Given firebase email: {} ", firebaseEmail);
 
             StaffJpa staff = staffRepository.findById(staffId).orElse(null);
 
@@ -51,7 +51,7 @@ public class AuthorisationService {
                 return false;
             }
 
-            log.info("given staff email: {} ", staff.getEmail());
+            log.info("Given staff email: {} ", staff.getEmail());
 
             return firebaseEmail.trim().equalsIgnoreCase(staff.getEmail().trim());
 
