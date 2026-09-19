@@ -33,3 +33,12 @@ rabbitmq:
         routing-key: "staffRegisteredKey"
 firebase:
   web-api-key: "AIzaSyAv24cfVsap6Cfw7vBTp3Bn9TBEpIy1V2s"
+
+logging:
+  level:
+    root: WARN
+    com.example: DEBUG
+    org.springframework.web: WARN
+    org.hibernate.SQL: DEBUG
+  file:
+    name: logs/staff-skill-auditor.log
