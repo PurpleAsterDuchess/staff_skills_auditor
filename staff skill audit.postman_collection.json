@@ -1,0 +1,1217 @@
+{
+  "info": {
+    "_postman_id": "7883975b-512a-457c-8b45-ff32b750549e",
+    "name": "staff skill audit",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "41750279"
+  },
+  "item": [
+    {
+      "name": "ByID",
+      "item": [
+        {
+          "name": "byStaffId",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status code is 200', function () {\n    pm.response.to.have.status(200);\n});\n\npm.test('Response time is under 2000ms', function () {\n    pm.expect(pm.response.responseTime).to.be.below(2000);\n});\n\npm.test('Response is JSON', function () {\n    pm.expect(pm.response.headers.get('Content-Type')).to.include('application/json');\n});\n\npm.test('Response body is an object', function () {\n    var jsonData = pm.response.json();\n    pm.expect(jsonData).to.be.an('object');\n});\n\npm.test('Response body has id equal to STF1', function () {\n    var jsonData = pm.response.json();\n    pm.expect(jsonData).to.have.property('id', 'STF1');\n});\n\npm.test('Response body has a firstName property (string)', function () {\n    var jsonData = pm.response.json();\n    pm.expect(jsonData).to.have.property('firstName').that.is.a('string');\n});\n\npm.test('Response body has an email property (string)', function () {\n    var jsonData = pm.response.json();\n    pm.expect(jsonData).to.have.property('email').that.is.a('string');\n});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8900/staff/{{vault:StaffID}}",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8900",
+              "path": [
+                "staff",
+                "{{vault:StaffID}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "bySkillId",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status code is 200', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test('Response time is under 2000ms', function () {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(2000);",
+                  "});",
+                  "",
+                  "pm.test('Response is JSON', function () {",
+                  "    pm.expect(pm.response.headers.get('Content-Type')).to.include('application/json');",
+                  "});",
+                  "",
+                  "pm.test('Response body is an object', function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData).to.be.an('object');",
+                  "});",
+                  "",
+                  "pm.test('Response body has skillId or id equal to SKL7', function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    var skillId = jsonData.skillId || jsonData.id;",
+                  "    pm.expect(skillId).to.equal('SKL7');",
+                  "});",
+                  "",
+                  "pm.test('Response body has a name property (string)', function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData).to.have.property('name').that.is.a('string');",
+                  "});",
+                  "",
+                  "pm.test('Response body has a category property (string)', function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData).to.have.property('category').that.is.a('string');",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8900/skills/SKL7",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8900",
+              "path": [
+                "skills",
+                "SKL7"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "byPortfolioId",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status code is 200', function () {\n    pm.response.to.have.status(200);\n});\n\npm.test('Response time is under 2000ms', function () {\n    pm.expect(pm.response.responseTime).to.be.below(2000);\n});\n\npm.test('Response is JSON', function () {\n    pm.expect(pm.response.headers.get('Content-Type')).to.include('application/json');\n});\n\npm.test('Response body is an object', function () {\n    var jsonData = pm.response.json();\n    pm.expect(jsonData).to.be.an('object');\n});\n\npm.test('Response body has id equal to PTF1', function () {\n    var jsonData = pm.response.json();\n    pm.expect(jsonData).to.have.property('id', 'PTF1');\n});\n\npm.test('Response body has a staff_id property (string)', function () {\n    var jsonData = pm.response.json();\n    pm.expect(jsonData).to.have.property('staff_id').that.is.a('string');\n});\n\npm.test('Response body has a portfolioEntry property that is an array', function () {\n    var jsonData = pm.response.json();\n    pm.expect(jsonData).to.have.property('portfolioEntry').that.is.an('array');\n});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8900/portfolio/PTF1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8900",
+              "path": [
+                "portfolio",
+                "PTF1"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Admin",
+      "item": [
+        {
+          "name": "update staff details",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"lineManagerId\": \"{{vault:ManagerId}}\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8900/staff/STF1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8900",
+              "path": [
+                "staff",
+                "STF1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "new staff",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"firstName\": \"staff\",\r\n    \"email\": \"mifafif865@94an.com\",\r\n    \"surname\": \"surname\",\r\n    \"department\": \"IT\",\r\n    \"roleName\": \"STAFF\",\r\n    \"jobLevel\": \"Junior\",\r\n    \"employmentType\": \"full-time\",\r\n    \"employmentStatus\": \"ACTIVE\"\r\n\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8900/staff",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8900",
+              "path": [
+                "staff"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "new manager",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"firstName\": \"manager\",\r\n    \"email\": \"manager@mail.com\",\r\n    \"surname\": \"surname\",\r\n    \"department\": \"IT\",\r\n    \"roleName\": \"MANAGER\",\r\n    \"jobLevel\": \"Junior\",\r\n    \"employmentType\": \"full-time\",\r\n    \"employmentStatus\": \"ACTIVE\"\r\n\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8900/staff",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8900",
+              "path": [
+                "staff"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "auth": {
+        "type": "bearer",
+        "bearer": [
+          {
+            "key": "token",
+            "value": "{{vault:Admin}}",
+            "type": "string"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Staff",
+      "item": [
+        {
+          "name": "allSkills",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "",
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test(\"Response time is under 2000ms\", function () {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(2000);",
+                  "});",
+                  "",
+                  "pm.test(\"Response is JSON (Content-Type contains application/json)\", function () {",
+                  "    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");",
+                  "});",
+                  "",
+                  "pm.test(\"Response body is an array\", function () {",
+                  "    const jsonData = pm.response.json();",
+                  "    pm.expect(jsonData).to.be.an(\"array\");",
+                  "});",
+                  "",
+                  "pm.test(\"Each skill item has a 'name' property (string)\", function () {",
+                  "    const jsonData = pm.response.json();",
+                  "    jsonData.forEach(function (skill) {",
+                  "        pm.expect(skill).to.have.property(\"name\");",
+                  "        pm.expect(skill.name).to.be.a(\"string\");",
+                  "    });",
+                  "});",
+                  "",
+                  "pm.test(\"Each skill item has a 'category' property (string)\", function () {",
+                  "    const jsonData = pm.response.json();",
+                  "    jsonData.forEach(function (skill) {",
+                  "        pm.expect(skill).to.have.property(\"category\");",
+                  "        pm.expect(skill.category).to.be.a(\"string\");",
+                  "    });",
+                  "});",
+                  ""
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8900/skills",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8900",
+              "path": [
+                "skills"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "allocate skill to portfolio",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "\npm.test(\"Status code is 201\", function () {\n    pm.response.to.have.status(201);\n});\n\npm.test(\"Response time is under 2000ms\", function () {\n    pm.expect(pm.response.responseTime).to.be.below(2000);\n});\n\npm.test(\"Response is JSON (Content-Type contains application/json)\", function () {\n    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");\n});\n\npm.test(\"Response body is an object\", function () {\n    const jsonData = pm.response.json();\n    pm.expect(jsonData).to.be.an(\"object\");\n});\n\npm.test(\"Response body has a 'portfolioId' or 'skillId' property\", function () {\n    const jsonData = pm.response.json();\n    pm.expect(jsonData).to.satisfy(function (body) {\n        return body.hasOwnProperty(\"portfolioId\") || body.hasOwnProperty(\"skillId\");\n    });\n});\n\npm.test(\"Response body has a 'status' property (string)\", function () {\n    const jsonData = pm.response.json();\n    pm.expect(jsonData).to.have.property(\"status\");\n    pm.expect(jsonData.status).to.be.a(\"string\");\n});\n"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"skillId\": \"SKL1\",\r\n  \"skillLevel\": 4,\r\n  \"notes\": \"Created more basic api requests.\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8900/portfolio/{{vault:StaffID}}/skills",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8900",
+              "path": [
+                "portfolio",
+                "{{vault:StaffID}}",
+                "skills"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update portfolio skill",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "\npm.test(\"Status code is 200\", function () {\n    pm.response.to.have.status(200);\n});\n\npm.test(\"Response time is under 2000ms\", function () {\n    pm.expect(pm.response.responseTime).to.be.below(2000);\n});\n\npm.test(\"Response is JSON (Content-Type contains application/json)\", function () {\n    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");\n});\n\npm.test(\"Response body is an object\", function () {\n    const jsonData = pm.response.json();\n    pm.expect(jsonData).to.be.an(\"object\");\n});\n\npm.test(\"Response body has a 'skillLevel' property equal to 1\", function () {\n    const jsonData = pm.response.json();\n    pm.expect(jsonData).to.have.property(\"skillLevel\");\n    pm.expect(jsonData.skillLevel).to.eql(1);\n});\n\n"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"skillLevel\": 1,\r\n  \"notes\": \"Updated: change the skill level.\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8900/portfolio/STF1/skills/SKL1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8900",
+              "path": [
+                "portfolio",
+                "STF1",
+                "skills",
+                "SKL1"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "auth": {
+        "type": "bearer",
+        "bearer": [
+          {
+            "key": "token",
+            "value": "{{vault:Staff}}",
+            "type": "string"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Manager",
+      "item": [
+        {
+          "name": "pending",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  ""
+                ]
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  ""
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{vault:Manager}}"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8900/portfolio/pending",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8900",
+              "path": [
+                "portfolio",
+                "pending"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "expired",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {\n    pm.response.to.have.status(200);\n});\n\npm.test(\"Response time is under 2000ms\", function () {\n    pm.expect(pm.response.responseTime).to.be.below(2000);\n});\n\npm.test(\"Response is JSON\", function () {\n    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");\n});\n\npm.test(\"Response body is an array\", function () {\n    var jsonData = pm.response.json();\n    pm.expect(jsonData).to.be.an(\"array\");\n});\n\npm.test(\"Each item has a portfolio_id property\", function () {\n    var jsonData = pm.response.json();\n    jsonData.forEach(function (item) {\n        pm.expect(item).to.have.property(\"portfolio_id\");\n    });\n});\n\npm.test(\"Each item has a skill_id property\", function () {\n    var jsonData = pm.response.json();\n    jsonData.forEach(function (item) {\n        pm.expect(item).to.have.property(\"skill_id\");\n    });\n});\n\npm.test(\"Each item has a verification_status property\", function () {\n    var jsonData = pm.response.json();\n    jsonData.forEach(function (item) {\n        pm.expect(item).to.have.property(\"verification_status\");\n    });\n});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8900/portfolio/expired",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8900",
+              "path": [
+                "portfolio",
+                "expired"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "filter portfolio skills",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {\n    pm.response.to.have.status(200);\n});\n\npm.test(\"Response time is under 2000ms\", function () {\n    pm.expect(pm.response.responseTime).to.be.below(2000);\n});\n\npm.test(\"Response is JSON\", function () {\n    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");\n});\n\npm.test(\"Response body is an array\", function () {\n    var jsonData = pm.response.json();\n    pm.expect(jsonData).to.be.an(\"array\");\n});\n\npm.test(\"Each item has a portfolio_id property\", function () {\n    var jsonData = pm.response.json();\n    jsonData.forEach(function (item) {\n        pm.expect(item).to.have.property(\"portfolio_id\");\n    });\n});\n\npm.test(\"Each item has a skill_id property\", function () {\n    var jsonData = pm.response.json();\n    jsonData.forEach(function (item) {\n        pm.expect(item).to.have.property(\"skill_id\");\n    });\n});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8900/portfolio/skills?staffId=STF1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8900",
+              "path": [
+                "portfolio",
+                "skills"
+              ],
+              "query": [
+                {
+                  "key": "staffId",
+                  "value": "STF1"
+                },
+                {
+                  "key": "skillId",
+                  "value": "SKL4",
+                  "disabled": true
+                },
+                {
+                  "key": "skillLevel",
+                  "value": "4",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update skill",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {\n    pm.response.to.have.status(200);\n});\n\npm.test(\"Response time is under 2000ms\", function () {\n    pm.expect(pm.response.responseTime).to.be.below(2000);\n});\n"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"skillLevel\": 1,\r\n  \"notes\": \"Updated: change the skill level.\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8900/portfolio/STF1/skills/SKL1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8900",
+              "path": [
+                "portfolio",
+                "STF1",
+                "skills",
+                "SKL1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "verify skill",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {\n    pm.response.to.have.status(200);\n});\n\npm.test(\"Response time is under 2000ms\", function () {\n    pm.expect(pm.response.responseTime).to.be.below(2000);\n});\n"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"verifiedBy\": \"STF2\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8900/portfolio/STF1/skills/SKL1/verify",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8900",
+              "path": [
+                "portfolio",
+                "STF1",
+                "skills",
+                "SKL1",
+                "verify"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "unverify skill",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"unverifiedBy\": \"STF2\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8900/portfolio/STF1/skills/SKL1/unverify",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8900",
+              "path": [
+                "portfolio",
+                "STF1",
+                "skills",
+                "SKL1",
+                "unverify"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "reject skill",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"rejectedBy\": \"STF2\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8900/portfolio/STF1/skills/SKL1/reject",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8900",
+              "path": [
+                "portfolio",
+                "STF1",
+                "skills",
+                "SKL1",
+                "reject"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "auth": {
+        "type": "bearer",
+        "bearer": [
+          {
+            "key": "token",
+            "value": "{{vault:Manager}}",
+            "type": "string"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.sendRequest({",
+              "    url: 'http://localhost:8900/auth/login',",
+              "    method: 'POST',",
+              "    header: { 'Content-Type': 'application/json' },",
+              "    body: {",
+              "        mode: 'raw',",
+              "        raw: JSON.stringify({",
+              "            emailOrUsername: 'manager@mail.com',",
+              "            password: 'password123'",
+              "        })",
+              "    }",
+              "}, function (err, res) {",
+              "    if (err) {",
+              "        console.error('Login failed:', err);",
+              "    } else {",
+              "        const json = res.json();",
+              "        pm.collectionVariables.set('managerToken', json.idToken);",
+              "    }",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Skill Manager",
+      "item": [
+        {
+          "name": "new skill",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "// 1. Status 400 Bad Request\npm.test(\"Status code is 400 Bad Request\", function () {\n    pm.response.to.have.status(400);\n});\n\n// 2. Response time under 2000ms\npm.test(\"Response time is under 2000ms\", function () {\n    pm.expect(pm.response.responseTime).to.be.below(2000);\n});\n\n// 3. Response is JSON (Content-Type contains application/json)\npm.test(\"Response is JSON (Content-Type contains application/json)\", function () {\n    const contentType = pm.response.headers.get(\"Content-Type\");\n    pm.expect(contentType).to.include(\"application/json\");\n});\n\n// 4. Response body has correct error structure\npm.test(\"Response body has correct error structure\", function () {\n    const json = pm.response.json();\n    pm.expect(json).to.be.an(\"object\");\n    pm.expect(json).to.have.property(\"error\", \"Bad Request\");\n    pm.expect(json).to.have.property(\"message\", \"Validation failed for one or more fields\");\n    pm.expect(json).to.have.property(\"errors\");\n    pm.expect(json.errors).to.have.property(\"errorReason\");\n});\n\n// 5. Error reason indicates duplicate skill\npm.test(\"Error reason indicates duplicate skill\", function () {\n    const json = pm.response.json();\n    pm.expect(json.errors.errorReason).to.include(\"already exists\");\n});\n\n// 6. Timestamp is present\npm.test(\"Timestamp is present\", function () {\n    const json = pm.response.json();\n    pm.expect(json).to.have.property(\"timestamp\");\n});\n"
+                ]
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "// Fetch a fresh skill manager token before sending\nconst loginRequest = {\n    url: 'http://localhost:8900/auth/login',\n    method: 'POST',\n    header: { 'Content-Type': 'application/json' },\n    body: {\n        mode: 'raw',\n        raw: JSON.stringify({\n            emailOrUsername: 'skill.manager@mail.com',\n            password: 'password123'\n        })\n    }\n};\n\npm.sendRequest(loginRequest, function (err, res) {\n    if (err) {\n        console.error('Login failed:', err);\n    } else {\n        const token = res.json().idToken;\n        pm.variables.set('skillManagerToken', token);\n    }\n});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{skillManagerToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"id\": \"SKL7\",\r\n  \"name\": \"Docker Containerisation\",\r\n  \"description\": \"Managing multi-container production environments with compose.\",\r\n  \"category\": \"DevOps\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8900/skills",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8900",
+              "path": [
+                "skills"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "activate",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8900/skills/SKL7/activate",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8900",
+              "path": [
+                "skills",
+                "SKL7",
+                "activate"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update skill",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"description\": \"update\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8900/skills/SKL7",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8900",
+              "path": [
+                "skills",
+                "SKL7"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "deactivate",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8900/skills/SKL7/deactivate",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8900",
+              "path": [
+                "skills",
+                "SKL7",
+                "deactivate"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "filter portfolio skills",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8900/portfolio/skills",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8900",
+              "path": [
+                "portfolio",
+                "skills"
+              ],
+              "query": [
+                {
+                  "key": "staffId",
+                  "value": "STF1",
+                  "disabled": true
+                },
+                {
+                  "key": "skillId",
+                  "value": "SKL4",
+                  "disabled": true
+                },
+                {
+                  "key": "skillLevel",
+                  "value": "4",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "expired",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8900/portfolio/expired",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8900",
+              "path": [
+                "portfolio",
+                "expired"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "auth": {
+        "type": "bearer",
+        "bearer": [
+          {
+            "key": "token",
+            "value": "{{vault:Skill manager}}",
+            "type": "string"
+          }
+        ]
+      }
+    },
+    {
+      "name": "login staff",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "// 1. Status code is 200\npm.test(\"Status code is 200\", function () {\n    pm.response.to.have.status(200);\n});\n\n// 2. Response time is under 2000ms\npm.test(\"Response time is under 2000ms\", function () {\n    pm.expect(pm.response.responseTime).to.be.below(2000);\n});\n\n// 3. Response is JSON (Content-Type contains application/json)\npm.test(\"Response is JSON (Content-Type contains application/json)\", function () {\n    const contentType = pm.response.headers.get(\"Content-Type\");\n    pm.expect(contentType).to.include(\"application/json\");\n});\n\n// 4. Response body has an idToken property (string)\npm.test(\"Response body has an idToken property (string)\", function () {\n    const json = pm.response.json();\n    pm.expect(json).to.have.property(\"idToken\");\n    pm.expect(json.idToken).to.be.a(\"string\").and.not.empty;\n});\n\n\n// 5. Save idToken to collection variable staffToken\npm.test(\"Save idToken to staffToken collection variable\", function () {\n    const json = pm.response.json();\n    pm.expect(json).to.have.property(\"idToken\");\n    pm.collectionVariables.set('staffToken', json.idToken);\n});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"emailOrUsername\": \"mifafif865@94an.com\",\r\n    \"password\": \"password123\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8900/auth/login",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8900",
+          "path": [
+            "auth",
+            "login"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "login staff Copy",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"emailOrUsername\": \"staff2@mail.com\",\r\n    \"password\": \"password123\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8900/auth/login",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8900",
+          "path": [
+            "auth",
+            "login"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "login manager",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "// 1. Status code is 200\npm.test(\"Status code is 200\", function () {\n    pm.response.to.have.status(200);\n});\n\n// 2. Response time is under 2000ms\npm.test(\"Response time is under 2000ms\", function () {\n    pm.expect(pm.response.responseTime).to.be.below(2000);\n});\n\n// 3. Response is JSON (Content-Type contains application/json)\npm.test(\"Response is JSON (Content-Type contains application/json)\", function () {\n    const contentType = pm.response.headers.get(\"Content-Type\");\n    pm.expect(contentType).to.include(\"application/json\");\n});\n\n// 4. Response body has an idToken property (string)\npm.test(\"Response body has an idToken property (string)\", function () {\n    const json = pm.response.json();\n    pm.expect(json).to.have.property(\"idToken\");\n    pm.expect(json.idToken).to.be.a(\"string\").and.not.empty;\n});\n\n// 5. Save idToken to collection variable managerToken\npm.test(\"Save idToken to managerToken collection variable\", function () {\n    const json = pm.response.json();\n    pm.expect(json).to.have.property(\"idToken\");\n    pm.collectionVariables.set('managerToken', json.idToken);\n});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"emailOrUsername\": \"manager@mail.com\",\r\n    \"password\": \"password123\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8900/auth/login",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8900",
+          "path": [
+            "auth",
+            "login"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "login skill manager",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "// 1. Status code is 200\npm.test(\"Status code is 200\", function () {\n    pm.response.to.have.status(200);\n});\n\n// 2. Response time is under 2000ms\npm.test(\"Response time is under 2000ms\", function () {\n    pm.expect(pm.response.responseTime).to.be.below(2000);\n});\n\n// 3. Response is JSON (Content-Type contains application/json)\npm.test(\"Response is JSON (Content-Type contains application/json)\", function () {\n    const contentType = pm.response.headers.get(\"Content-Type\");\n    pm.expect(contentType).to.include(\"application/json\");\n});\n\n// 4. Response body has an idToken property (string)\npm.test(\"Response body has an idToken property (string)\", function () {\n    const json = pm.response.json();\n    pm.expect(json).to.have.property(\"idToken\");\n    pm.expect(json.idToken).to.be.a(\"string\").and.not.empty;\n});\n\n\n// 5. Save idToken to collection variable skillManagerToken\npm.test(\"Save idToken to skillManagerToken collection variable\", function () {\n    const json = pm.response.json();\n    pm.expect(json).to.have.property(\"idToken\");\n    pm.collectionVariables.set('skillManagerToken', json.idToken);\n});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"emailOrUsername\": \"skill.manager@mail.com\",\r\n    \"password\": \"password123\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8900/auth/login",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8900",
+          "path": [
+            "auth",
+            "login"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "login admin",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "// 1. Status code is 200\npm.test(\"Status code is 200\", function () {\n    pm.response.to.have.status(200);\n});\n\n// 2. Response time is under 2000ms\npm.test(\"Response time is under 2000ms\", function () {\n    pm.expect(pm.response.responseTime).to.be.below(2000);\n});\n\n// 3. Response is JSON (Content-Type contains application/json)\npm.test(\"Response is JSON (Content-Type contains application/json)\", function () {\n    const contentType = pm.response.headers.get(\"Content-Type\");\n    pm.expect(contentType).to.include(\"application/json\");\n});\n\n// 4. Response body has an idToken property (string)\npm.test(\"Response body has an idToken property (string)\", function () {\n    const json = pm.response.json();\n    pm.expect(json).to.have.property(\"idToken\");\n    pm.expect(json.idToken).to.be.a(\"string\").and.not.empty;\n});\n\n"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"emailOrUsername\": \"admin@mail.com\",\r\n    \"password\": \"password123\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8900/auth/login",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8900",
+          "path": [
+            "auth",
+            "login"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "register",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              ""
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"email\": \"staff2@mail.com\",\r\n    \"password\": \"password123\",\r\n    \"username\": \"staff2\",\r\n    \"role\": \"STAFF\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8900/auth/register",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8900",
+          "path": [
+            "auth",
+            "register"
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "variable": [
+    {
+      "key": "supabase_service_role_api_key_0gnf",
+      "secret": true
+    },
+    {
+      "value": ""
+    },
+    {
+      "key": "managerToken",
+      "value": ""
+    },
+    {
+      "value": ""
+    },
+    {
+      "key": "staffToken",
+      "value": ""
+    },
+    {
+      "key": "skillManagerToken",
+      "value": ""
+    },
+    {
+      "key": "adminToken",
+      "value": ""
+    }
+  ]
+}
