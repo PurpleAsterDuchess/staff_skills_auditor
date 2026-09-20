@@ -1,6 +1,5 @@
-package org.example.staffskillsauditor2.skills.application.dto;
+package org.example.staffskillsauditor2.staff.application.dto;
 
-import org.example.staffskillsauditor2.staff.application.dto.StaffDTO;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
